@@ -7,6 +7,9 @@
   --font1: "Itim", cursive;
   --font2: "Jaldi", sans-serif;
 }
+::placeholder {
+  font-family: var(--font1);
+}
 body {
   font-family: var(--font1);
 }
