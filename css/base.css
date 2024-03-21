@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Itim&display=swap");
+
+:root {
+  --color-one: #fcccb7;
+  --color-two: #ffe4d3;
+  --color-text: rgba(0, 0, 0, 0.7);
+  --font1: "Itim", cursive;
+  --font2: "Jaldi", sans-serif;
+}
+body {
+  font-family: var(--font1);
+}
+* {
+  box-sizing: border-box;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+a {
+  color: var(--color-text);
+  font-family: var(--font1);
+  text-decoration: none;
+}
+p {
+  line-height: 1.5;
+  margin: 0;
+}
+ul li {
+  line-height: 1.5;
+}

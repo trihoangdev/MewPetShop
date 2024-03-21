@@ -1,0 +1,20 @@
+<svg width="34" height="37" viewBox="0 0 34 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="pepicons-pencil:person" filter="url(#filter0_d_23_103)">
+<g id="Group">
+<path id="Vector" d="M16.15 14.45C18.9667 14.45 21.25 12.1667 21.25 9.35C21.25 6.53335 18.9667 4.25 16.15 4.25C13.3334 4.25 11.05 6.53335 11.05 9.35C11.05 12.1667 13.3334 14.45 16.15 14.45Z" stroke="black" stroke-linecap="round"/>
+<path id="Vector_2" d="M25.5 28.05V24.65C25.5 19.3834 21.2585 14.45 16.15 14.45C11.0398 14.45 6.79999 19.3834 6.79999 24.65V28.05" stroke="black" stroke-linecap="round"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_d_23_103" x="-4" y="0" width="42" height="42" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="2"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_23_103"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_23_103" result="shape"/>
+</filter>
+</defs>
+</svg>
