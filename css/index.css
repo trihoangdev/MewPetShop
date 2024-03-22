@@ -23,8 +23,8 @@
   align-items: center; /*Căn giữa theo chiều dọc*/
 }
 .header .header-top .header-section-one img {
-  width: 218px;
-  margin-right: 12px;
+  width: 150px;
+  margin-right: 30px;
 }
 .header .header-top .header-section-one input {
   width: 60%;
