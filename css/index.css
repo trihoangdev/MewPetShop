@@ -231,6 +231,11 @@
   align-items: center;
   text-align: center;
   justify-content: space-between;
+  overflow: hidden;
+}
+.product-list .product-item:hover img {
+  transition: transform 0.3s ease;
+  transform: scale(1.1);
 }
 .product-list .product-item p {
   margin: 0;
@@ -252,6 +257,7 @@
   padding: 5px;
   color: white;
 }
+
 /*End Section 3 - 4  - 5 chung*/
 /* section 3 */
 .section3 {
