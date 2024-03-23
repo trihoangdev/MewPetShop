@@ -228,7 +228,7 @@
   justify-content: center;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 .product .product-title p {
   font-size: 24px;
@@ -293,19 +293,19 @@
 /* section 3 */
 .section3 {
   position: relative;
-  margin-top: 50px;
+  margin-top: 40px;
 }
 /* end section 3 */
 /* section 4 */
 .section4 {
-  margin-top: 50px;
+  margin-top: 40px;
   position: relative;
 }
 /* end section 4 */
 
 /* section 5 */
 .section5 {
-  margin-top: 50px;
+  margin-top: 40px;
   position: relative;
 }
 /* end section 4 */
