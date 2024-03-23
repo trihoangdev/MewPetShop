@@ -231,13 +231,18 @@
   margin-bottom: 15px;
 }
 .product .product-title p {
-  font-size: 28px;
+  font-size: 24px;
 }
 .product .product-title p span {
   color: #ec1e1e;
 }
 .product .product-title a {
-  font-size: 24px;
+  font-size: 20px;
+}
+.product .product-title a:hover {
+  text-decoration: underline;
+  transition: transform 0.3s ease;
+  transform: scale(1.1);
 }
 .product-list {
   display: flex;
