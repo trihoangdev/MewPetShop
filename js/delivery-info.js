@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function() {
   onLoad();
   document.getElementById("city").addEventListener("change", changeDistrict);
   document.getElementById("district").addEventListener("change", changeWard);
+  loadQuantityInCart();
 });
 
 
@@ -72,7 +73,6 @@ function onLoad() {
     citySelect.appendChild(option); // Thêm option vào phần tử select
   });
 }
-
 function changeDistrict(){
   var cityName = document.getElementById("city").value; // Lấy tên thành phố được chọn
 
@@ -107,5 +107,7 @@ function changeWard(){
     wardSelect.appendChild(option);// Thêm option vào phần tử select của phường
   });
 }
-
-
+function loadQuantityInCart(){
+  var quantityInCart = JSON.parse(localStorage.getItem("quantityInCart"));
+  document.getElementById("quantity-in-cart").innerHTML = quantityInCart;
+}

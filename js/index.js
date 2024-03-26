@@ -3,8 +3,11 @@ import productData from "../data/product.json" with { type: "json" };
 localStorage.setItem('productSale', JSON.stringify(productData[0]));
 localStorage.setItem('productNew', JSON.stringify(productData[1]));
 localStorage.setItem('productRestock', JSON.stringify(productData[2]));
-window.addEventListener("load", onLoad);
 
+document.addEventListener("DOMContentLoaded", function() {
+  onLoad();
+  loadQuantityInCart();
+})
 //Lấy tham chiếu đến các div
 //Sản phẩm Flash sale
 var productSale1 = document.getElementById("product-sale-1");
@@ -150,8 +153,6 @@ function onLoad() {
   productRestock4.querySelector(".product-item-price").innerHTML = formatPrice(
     productRestocksObj.items[3].price
   );
-
-  document.getElementById("quantity-in-cart").innerHTML = quantityInCart;
 }
 
 function formatPrice(price) {
@@ -215,3 +216,7 @@ products.forEach((item) => {
     window.location.href = "../html/product-detail.html";
   });
 });
+function loadQuantityInCart(){
+  var quantityInCart = JSON.parse(localStorage.getItem("quantityInCart"));
+  document.getElementById("quantity-in-cart").innerHTML = quantityInCart;
+}
