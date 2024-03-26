@@ -4,42 +4,10 @@ localStorage.setItem('productSale', JSON.stringify(productData[0]));
 localStorage.setItem('productNew', JSON.stringify(productData[1]));
 localStorage.setItem('productRestock', JSON.stringify(productData[2]));
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   onLoad();
   loadQuantityInCart();
-})
-//Lấy tham chiếu đến các div
-//Sản phẩm Flash sale
-var productSale1 = document.getElementById("product-sale-1");
-var productSale2 = document.getElementById("product-sale-2");
-var productSale3 = document.getElementById("product-sale-3");
-var productSale4 = document.getElementById("product-sale-4");
-//Sản phẩm New
-var productNew1 = document.getElementById("product-new-1");
-var productNew2 = document.getElementById("product-new-2");
-var productNew3 = document.getElementById("product-new-3");
-var productNew4 = document.getElementById("product-new-4");
-//Sản phẩm Restock
-var productRestock1 = document.getElementById("product-restock-1");
-var productRestock2 = document.getElementById("product-restock-2");
-var productRestock3 = document.getElementById("product-restock-3");
-var productRestock4 = document.getElementById("product-restock-4");
-
-//tạo mảng các sản phẩm
-var products = [
-  productSale1,
-  productSale2,
-  productSale3,
-  productSale4,
-  productNew1,
-  productNew2,
-  productNew3,
-  productNew4,
-  productRestock1,
-  productRestock2,
-  productRestock3,
-  productRestock4,
-];
+});
 
 //Lấy dữ liệu từ Local Storage
 var productSalesObj = JSON.parse(localStorage.getItem("productSale"));
@@ -47,6 +15,39 @@ var productNewsObj = JSON.parse(localStorage.getItem("productNew"));
 var productRestocksObj = JSON.parse(localStorage.getItem("productRestock"));
 var quantityInCart = JSON.parse(localStorage.getItem("quantityInCart"));
 function onLoad() {
+  //Lấy tham chiếu đến các div
+  //Sản phẩm Flash sale
+  var productSale1 = document.getElementById("product-sale-1");
+  var productSale2 = document.getElementById("product-sale-2");
+  var productSale3 = document.getElementById("product-sale-3");
+  var productSale4 = document.getElementById("product-sale-4");
+  //Sản phẩm New
+  var productNew1 = document.getElementById("product-new-1");
+  var productNew2 = document.getElementById("product-new-2");
+  var productNew3 = document.getElementById("product-new-3");
+  var productNew4 = document.getElementById("product-new-4");
+  //Sản phẩm Restock
+  var productRestock1 = document.getElementById("product-restock-1");
+  var productRestock2 = document.getElementById("product-restock-2");
+  var productRestock3 = document.getElementById("product-restock-3");
+  var productRestock4 = document.getElementById("product-restock-4");
+
+  //tạo mảng các sản phẩm
+  var products = [
+    productSale1,
+    productSale2,
+    productSale3,
+    productSale4,
+    productNew1,
+    productNew2,
+    productNew3,
+    productNew4,
+    productRestock1,
+    productRestock2,
+    productRestock3,
+    productRestock4,
+  ];
+
   //Ghi dữ liệu từ LocalStorage vào các biến
   //Sản phẩm FlashSale
   var productSales1 = document.getElementById("product-sale-1");
@@ -216,7 +217,7 @@ products.forEach((item) => {
     window.location.href = "../html/product-detail.html";
   });
 });
-function loadQuantityInCart(){
+function loadQuantityInCart() {
   var quantityInCart = JSON.parse(localStorage.getItem("quantityInCart"));
   document.getElementById("quantity-in-cart").innerHTML = quantityInCart;
 }
