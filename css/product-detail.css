@@ -43,19 +43,19 @@ p {
 .wrapper .content #quantity-title {
   font-size: 17px;
 }
-.wrapper .content .quantity {
+.wrapper .content .quantity-box {
   margin-top: 5px;
   margin-bottom: 10px;
 }
-.wrapper .content .quantity i {
+.wrapper .content .quantity-box i {
   font-size: 20px;
   padding: 10px;
   border-radius: 2px;
 }
-.wrapper .content .quantity i:hover {
+.wrapper .content .quantity-box i:hover {
   background-color: #f0efef;
 }
-.wrapper .content .quantity input {
+.wrapper .content .quantity-box input {
   font-size: 16px;
   padding: 10px;
   color: var(--color-text);

@@ -55,6 +55,7 @@
   justify-items: center;
   align-items: center;
   justify-content: space-evenly;
+  position: relative;
 }
 .header .header-top .header-section-two img {
   width: 38px;
@@ -63,7 +64,12 @@
   transition: transform 0.3s ease;
   transform: scale(1.2);
 }
-
+.header .header-top .header-section-two #quantity-in-cart {
+  position: absolute;
+  top: 0;
+  right: 30px;
+  background-color: transparent;
+}
 .menu-bar {
   font-size: 18px;
   font-weight: 400;
@@ -312,12 +318,12 @@
 
 /* footer */
 footer {
-  font-family: var(--font2);
+  font-family: var(--font1);
   margin-top: 50px;
   background-color: #f4f4f4;
 }
 footer ul li a {
-  font-family: var(--font2);
+  font-family: var(--font1);
 }
 .footer-section1 {
   display: flex;
@@ -359,7 +365,7 @@ footer ul li a {
   border: 1px solid #000;
 }
 .footer-section2 {
-  margin-top: 52px;
+  margin-top: 15px;
   margin-left: 50px;
   margin-right: 50px;
   display: flex;
@@ -368,24 +374,24 @@ footer ul li a {
 }
 .footer-section2 h2 {
   color: rgba(0, 0, 0, 0.8);
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 400;
 }
 .footer-section2 p,
 ul li {
   color: rgba(0, 0, 0, 0.6);
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
 }
 .footer-section2 .introduce {
   display: flex;
   flex-direction: column;
   width: 30%;
-  font-family: var(--font2);
+  font-family: var(--font1);
   margin-right: 30px;
 }
 .footer-section2 .introduce img {
-  margin-top: 50px;
+  margin-top: 20px;
   width: 177px;
 }
 .footer-section2 .policy {

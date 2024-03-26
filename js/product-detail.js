@@ -2,13 +2,16 @@
 var productTitle = document.getElementById("product-title");
 var img = document.getElementById("image-src");
 var price = document.getElementById("price");
+var quantityInCart = document.getElementById("quantity-in-cart");
 document.addEventListener("DOMContentLoaded", function () {
   // Lấy thông tin của sản phẩm từ localStorage
   const currentProduct = JSON.parse(localStorage.getItem("currentProduct"));
+  const currentQuantity = JSON.parse(localStorage.getItem("quantityInCart"));
   //truyền thông tin từ local storage vào các thẻ
   productTitle.innerHTML = currentProduct.title;
   img.src = "../" + currentProduct.src;
   price.innerHTML = formatPrice(currentProduct.price);
+  quantityInCart.innerHTML = currentQuantity;
 });
 function formatPrice(price) {
   // Chuyển số thành chuỗi và thêm dấu chấm phẩy sau mỗi 3 chữ số từ cuối lên
@@ -17,3 +20,59 @@ function formatPrice(price) {
   formattedPrice += "đ";
   return formattedPrice;
 }
+
+//Lấy thẻ div chưa quantity, nút tăng, giảm
+var quantity = document.getElementById("quantity");
+var btnUp = document.getElementById("btn-up");
+var btnDown = document.getElementById("btn-down");
+//Thiết lập sk cho nút tăng
+btnUp.addEventListener("click", function () {
+  //Lấy giá trị hiện tại của quantity và tăng lên 1
+  var quantityInt = parseInt(quantity.value);
+  quantity.value = ++quantityInt;
+  quantity.style.backgroundColor = "white";
+});
+//Thiết lập sk cho nút giảm
+btnDown.addEventListener("click", function () {
+  //Lấy giá trị hiện tại của quantity và giảm đi 1
+  var quantityInt = parseInt(quantity.value);
+  if (quantityInt > 1) quantity.value = --quantityInt;
+  else {
+    quantity.style.backgroundColor = "#E26F70";
+    showMessage("Số lượng phải lớn hơn 1");
+  }
+});
+
+//Tham chiếu đến nút thêm vào giỏ hàng
+var btnAddToCart = document.querySelector("button");
+btnAddToCart.addEventListener("click", function () {
+  //Lấy số lượng trong cart có sẵn cộng dồn vào
+  var totalQuantity = parseInt(
+    document.getElementById("quantity-in-cart").textContent
+  );
+  totalQuantity += parseInt(document.getElementById("quantity").value);
+  //Ghi số lượng thêm vào localStorage
+  localStorage.setItem("quantityInCart", totalQuantity);
+
+  //Ghi đối tượng hiện tại vào localStorage
+  // Lấy dữ liệu từ localStorage (nếu đã tồn tại)
+  var data = localStorage.getItem("productInCart");
+  // Khởi tạo một mảng mới hoặc mảng rỗng nếu chưa có dữ liệu trong localStorage
+  var dataArray = data ? JSON.parse(data) : [];
+  // Đối tượng mới cần thêm vào mảng
+  var newProduct = {
+    title: "${productTitle}",
+    src: "${img}",
+    price: "${price}",
+    quantity: '${document.getElementById("quantity").value}',
+  };
+  // Thêm đối tượng mới vào mảng
+  dataArray.push(newProduct);
+  // Chuyển đổi mảng thành chuỗi JSON
+  var newData = JSON.stringify(dataArray);
+  // Lưu chuỗi JSON vào localStorage
+  localStorage.setItem("productInCart", newData);
+
+  //Điều chỉnh số lượng của quantity-in-cart
+  document.getElementById("quantity-in-cart").innerHTML = totalQuantity;
+});

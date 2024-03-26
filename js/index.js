@@ -42,6 +42,7 @@ var products = [
 var productSalesObj = JSON.parse(localStorage.getItem("productSale"));
 var productNewsObj = JSON.parse(localStorage.getItem("productNew"));
 var productRestocksObj = JSON.parse(localStorage.getItem("productRestock"));
+var quantityInCart = JSON.parse(localStorage.getItem("quantityInCart"));
 function onLoad() {
   //Ghi dữ liệu từ LocalStorage vào các biến
   //Sản phẩm FlashSale
@@ -149,6 +150,8 @@ function onLoad() {
   productRestock4.querySelector(".product-item-price").innerHTML = formatPrice(
     productRestocksObj.items[3].price
   );
+
+  document.getElementById("quantity-in-cart").innerHTML = quantityInCart;
 }
 
 function formatPrice(price) {

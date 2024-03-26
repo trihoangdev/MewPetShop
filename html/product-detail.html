@@ -41,6 +41,7 @@
             ><img src="../image/user.svg" alt="user"
           /></a>
           <a href="#"><img src="../image/cart.svg" alt="cart" /></a>
+          <p id="quantity-in-cart">0</p>
         </div>
       </div>
     </header>
@@ -66,10 +67,10 @@
         <p id="price"></p>
         <hr />
         <p id="quantity-title">Số lượng</p>
-        <div class="quantity">
-          <i class="fa-solid fa-chevron-up"></i>
+        <div class="quantity-box">
+          <i class="fa-solid fa-chevron-down" id="btn-down"></i>
           <input type="text" name="quantity" id="quantity" value="1" readonly />
-          <i class="fa-solid fa-chevron-down"></i>
+          <i class="fa-solid fa-chevron-up" id="btn-up"></i>
         </div>
         <button>Thêm vào giỏ</button>
         <h2>Mô tả</h2>
