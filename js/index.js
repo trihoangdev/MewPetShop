@@ -1,8 +1,8 @@
-//Lưu local Storage
-// import productData from "../data/product.json" with { type: "json" };
-// localStorage.setItem('productSale', JSON.stringify(productData[0]));
-// localStorage.setItem('productNew', JSON.stringify(productData[1]));
-// localStorage.setItem('productRestock', JSON.stringify(productData[2]));
+// Lưu local Storage
+import productData from "../data/product.json" with { type: "json" };
+localStorage.setItem('productSale', JSON.stringify(productData[0]));
+localStorage.setItem('productNew', JSON.stringify(productData[1]));
+localStorage.setItem('productRestock', JSON.stringify(productData[2]));
 window.addEventListener("load", onLoad);
 
 //Lấy tham chiếu đến các div
