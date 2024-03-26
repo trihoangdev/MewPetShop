@@ -1,0 +1,87 @@
+p {
+  color: var(--color-text);
+}
+.body-header {
+  margin-top: 20px;
+  background-color: #f0efef;
+  padding: 18px;
+}
+.body-header span {
+  padding-left: 100px;
+}
+
+.wrapper {
+  max-width: 1200px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-left: 100px;
+  align-content: space-between;
+  position: relative;
+}
+.wrapper .image {
+  width: 35%;
+  overflow: hidden;
+}
+.wrapper .image img {
+  width: 90%;
+  text-align: left;
+  background: transparent;
+}
+.wrapper .image img:hover {
+  transition: transform 0.3s ease;
+  transform: scale(1.1);
+}
+.wrapper .content {
+  width: 60%;
+}
+.wrapper .content #price {
+  color: red;
+  font-size: 20px;
+}
+.wrapper .content #quantity-title {
+  font-size: 17px;
+}
+.wrapper .content .quantity {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+.wrapper .content .quantity i {
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 2px;
+}
+.wrapper .content .quantity i:hover {
+  background-color: #f0efef;
+}
+.wrapper .content .quantity input {
+  font-size: 16px;
+  padding: 10px;
+  color: var(--color-text);
+  width: 75px;
+  text-align: center;
+}
+.wrapper .content button {
+  width: 100%;
+  padding: 10px;
+  background-color: #2f2f2f;
+  color: white;
+  font-size: 16.5px;
+  font-family: var(--font1);
+}
+.wrapper .content button:hover {
+  background-color: #393939;
+}
+.wrapper .leg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 150px;
+}
+.wrapper .leg2 {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 150px;
+}
