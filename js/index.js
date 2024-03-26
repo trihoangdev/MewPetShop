@@ -162,6 +162,53 @@ function formatPrice(price) {
 //Set sự kiện chuyển trang cho các div
 products.forEach((item) => {
   item.addEventListener("click", function () {
+    //Lưu thông tin vào local storage để truy xuất
+    //lấy title và thẻ div đang được dùng
+    var divId = item.getAttribute("id");
+    var titleElement = item.querySelector(".product-item-tittle").textContent;
+
+    //Tìm kiếm
+    var type = divId.split("-"); //lấy kiểu
+    switch (type[1]) {
+      case "sale": {
+        //tìm trong productSalesObj
+        for (var i = 0; i < productSalesObj.items.length; i++)
+          if (productSalesObj.items[i].title == titleElement) {
+            localStorage.setItem(
+              "currentProduct",
+              JSON.stringify(productSalesObj.items[i])
+            );
+            break;
+          }
+        break;
+      }
+      case "new": {
+        //tìm trong productNewsObj
+        for (var i = 0; i < productNewsObj.items.length; i++)
+          if (productNewsObj.items[i].title == titleElement) {
+            localStorage.setItem(
+              "currentProduct",
+              JSON.stringify(productNewsObj.items[i])
+            );
+            break;
+          }
+        break;
+      }
+      case "restock": {
+        //tìm trong productRestocksObj
+        for (var i = 0; i < productRestocksObj.items.length; i++)
+          if (productRestocksObj.items[i].title == titleElement) {
+            localStorage.setItem(
+              "currentProduct",
+              JSON.stringify(productRestocksObj.items[i])
+            );
+            break;
+          }
+        break;
+      }
+    }
+
+    //Chuyển trang
     window.location.href = "../html/product-detail.html";
   });
 });
