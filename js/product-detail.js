@@ -3,16 +3,29 @@ var productTitle = document.getElementById("product-title");
 var img = document.getElementById("image-src");
 var price = document.getElementById("price");
 var quantityInCart = document.getElementById("quantity-in-cart");
+
+// Lấy thông tin của sản phẩm từ localStorage
+const currentProduct = JSON.parse(localStorage.getItem("currentProduct"));
 document.addEventListener("DOMContentLoaded", function () {
-  // Lấy thông tin của sản phẩm từ localStorage
-  const currentProduct = JSON.parse(localStorage.getItem("currentProduct"));
-  const currentQuantity = JSON.parse(localStorage.getItem("quantityInCart"));
+  var currentQuantity = 0;
+
+  // Lấy giá trị từ localStorage
+  var productInCart = JSON.parse(localStorage.getItem("productInCart"));
+  // Kiểm tra nếu quantityInCart không tồn tại hoặc là null, thiết lập giá trị mặc định là 0 và lưu vào localStorage
+  if (!productInCart) {
+    currentQuantity = 0;
+  } else {
+    var length = productInCart.length;
+    currentQuantity = length;
+  }
+
   //truyền thông tin từ local storage vào các thẻ
   productTitle.innerHTML = currentProduct.title;
   img.src = "../" + currentProduct.src;
   price.innerHTML = formatPrice(currentProduct.price);
   quantityInCart.innerHTML = currentQuantity;
 });
+
 function formatPrice(price) {
   // Chuyển số thành chuỗi và thêm dấu chấm phẩy sau mỗi 3 chữ số từ cuối lên
   let formattedPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -25,6 +38,7 @@ function formatPrice(price) {
 var quantity = document.getElementById("quantity");
 var btnUp = document.getElementById("btn-up");
 var btnDown = document.getElementById("btn-down");
+
 //Thiết lập sk cho nút tăng
 btnUp.addEventListener("click", function () {
   //Lấy giá trị hiện tại của quantity và tăng lên 1
@@ -32,6 +46,7 @@ btnUp.addEventListener("click", function () {
   quantity.value = ++quantityInt;
   quantity.style.backgroundColor = "white";
 });
+
 //Thiết lập sk cho nút giảm
 btnDown.addEventListener("click", function () {
   //Lấy giá trị hiện tại của quantity và giảm đi 1
@@ -46,14 +61,6 @@ btnDown.addEventListener("click", function () {
 //Tham chiếu đến nút thêm vào giỏ hàng
 var btnAddToCart = document.querySelector("button");
 btnAddToCart.addEventListener("click", function () {
-  //Lấy số lượng trong cart có sẵn cộng dồn vào
-  var totalQuantity = parseInt(
-    document.getElementById("quantity-in-cart").textContent
-  );
-  totalQuantity += parseInt(document.getElementById("quantity").value);
-  //Ghi số lượng thêm vào localStorage
-  localStorage.setItem("quantityInCart", totalQuantity);
-
   //Ghi đối tượng hiện tại vào localStorage
   // Lấy dữ liệu từ localStorage (nếu đã tồn tại)
   var data = localStorage.getItem("productInCart");
@@ -61,13 +68,35 @@ btnAddToCart.addEventListener("click", function () {
   var dataArray = data ? JSON.parse(data) : [];
   // Đối tượng mới cần thêm vào mảng
   var newProduct = {
-    title: "${productTitle}",
-    src: "${img}",
-    price: "${price}",
-    quantity: '${document.getElementById("quantity").value}',
+    id: `${currentProduct.id}`,
+    title: `${currentProduct.title}`,
+    src: `${currentProduct.src}`,
+    price: `${currentProduct.price}`,
+    quantity: `${document.getElementById("quantity").value}`,
   };
-  // Thêm đối tượng mới vào mảng
-  dataArray.push(newProduct);
+  // Kiểm tra xem sản phẩm đã tồn tại trong giỏ hàng hay chưa
+  var existingProductIndex = dataArray.findIndex(
+    (item) => item.id === newProduct.id
+  );
+
+  if (existingProductIndex !== -1) {
+    // Nếu sản phẩm đã tồn tại trong giỏ hàng, cộng dồn quantity
+    dataArray[existingProductIndex].quantity =
+      parseInt(dataArray[existingProductIndex].quantity) +
+      parseInt(newProduct.quantity);
+    //Gán giá trị cho quantityInCart
+    var totalQuantity = parseInt(
+      document.getElementById("quantity-in-cart").textContent
+    );
+  } else {
+    // Ngược lại, thêm sản phẩm mới vào mảng
+    dataArray.push(newProduct);
+    //Nếu id đã tồn tại thì không cộng dồn, ngược lại tăng 1
+    var totalQuantity = parseInt(
+      document.getElementById("quantity-in-cart").textContent
+    );
+    totalQuantity++;
+  }
   // Chuyển đổi mảng thành chuỗi JSON
   var newData = JSON.stringify(dataArray);
   // Lưu chuỗi JSON vào localStorage

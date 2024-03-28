@@ -3,13 +3,12 @@ import cityData from "../data/country.json" with { type: "json" };
 var citySelect = document.getElementById("city");
 
 //Load DOM
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   onLoad();
   document.getElementById("city").addEventListener("change", changeDistrict);
   document.getElementById("district").addEventListener("change", changeWard);
   loadQuantityInCart();
 });
-
 
 function readAllCity() {
   var cities = []; // Khởi tạo mảng để lưu trữ tên thành phố
@@ -73,7 +72,7 @@ function onLoad() {
     citySelect.appendChild(option); // Thêm option vào phần tử select
   });
 }
-function changeDistrict(){
+function changeDistrict() {
   var cityName = document.getElementById("city").value; // Lấy tên thành phố được chọn
 
   var districts = readAllDistrict(cityName); // Lấy danh sách các quận của thành phố đã chọn
@@ -82,32 +81,33 @@ function changeDistrict(){
   var districtSelect = document.getElementById("district");
   districtSelect.innerHTML = "---Chọn quận/huyện---"; // Xóa các option cũ
 
-  districts.forEach(function(districtName) {
-      var option = document.createElement("option"); // Tạo một option mới
-      option.text = districtName; // Đặt giá trị văn bản của option là tên quận
-      option.value = districtName; // Đặt giá trị của option là tên quận
-      districtSelect.appendChild(option); // Thêm option vào phần tử select của quận
+  districts.forEach(function (districtName) {
+    var option = document.createElement("option"); // Tạo một option mới
+    option.text = districtName; // Đặt giá trị văn bản của option là tên quận
+    option.value = districtName; // Đặt giá trị của option là tên quận
+    districtSelect.appendChild(option); // Thêm option vào phần tử select của quận
   });
   changeWard();
 }
-function changeWard(){
+function changeWard() {
   var cityName = document.getElementById("city").value; // Lấy tên thành phố được chọn
-  var districtName = document.getElementById("district").value;//Lấy tên quận được chọn
+  var districtName = document.getElementById("district").value; //Lấy tên quận được chọn
 
-  var wards = readAllWards(cityName,districtName);
+  var wards = readAllWards(cityName, districtName);
 
   // Tạo các option cho phần tử select của phường
   var wardSelect = document.getElementById("ward");
-  wardSelect.innerHTML = "---Chọn phường/xã---";//Xoá các option cũ
-  
-  wards.forEach(function(wardName){
+  wardSelect.innerHTML = "---Chọn phường/xã---"; //Xoá các option cũ
+
+  wards.forEach(function (wardName) {
     var option = document.createElement("option"); // Tạo một option mới
-    option.text = wardName;// Đặt giá trị văn bản của option là tên phường
-    option.value = wardName;// Đặt giá trị của option là tên phường
-    wardSelect.appendChild(option);// Thêm option vào phần tử select của phường
+    option.text = wardName; // Đặt giá trị văn bản của option là tên phường
+    option.value = wardName; // Đặt giá trị của option là tên phường
+    wardSelect.appendChild(option); // Thêm option vào phần tử select của phường
   });
 }
-function loadQuantityInCart(){
-  var quantityInCart = JSON.parse(localStorage.getItem("quantityInCart"));
+function loadQuantityInCart() {
+  var quantityInCart = JSON.parse(localStorage.getItem("productInCart").length);
+  console.log(productInCart);
   document.getElementById("quantity-in-cart").innerHTML = quantityInCart;
 }

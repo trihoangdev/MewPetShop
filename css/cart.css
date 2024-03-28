@@ -1,0 +1,126 @@
+p {
+  color: var(--color-text);
+}
+.body-header {
+  margin-top: 20px;
+  background-color: #f0efef;
+  padding: 18px;
+}
+.body-header span {
+  padding-left: 100px;
+}
+.body-head {
+  text-align: center;
+}
+.body-head h1 {
+  margin: 0;
+  margin-top: 25px;
+  font-size: 28px;
+  margin-bottom: 15px;
+  padding-bottom: 0;
+}
+.body-head p {
+  margin-bottom: 20px;
+}
+.wrapper {
+  width: 100%;
+  max-width: 1200px;
+  align-items: center;
+  margin-left: 120px;
+  display: flex;
+  flex-direction: row;
+}
+.wrapper .cart-product-list {
+  width: 100%;
+}
+hr {
+  margin-top: 10px;
+}
+.wrapper .item {
+  display: flex;
+}
+.wrapper .item img {
+  width: 150px;
+}
+.wrapper .item .content {
+  margin-left: 35px;
+}
+.wrapper .item .content h2 {
+  font-size: 16.5px;
+  padding: 0;
+  margin: 0;
+}
+.wrapper .item .content p {
+  font-size: 14px;
+  margin-top: 10px;
+}
+.wrapper .item .content .quantity-box {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+.wrapper .item .content .quantity-box i {
+  font-size: 15px;
+  padding: 5px;
+  border-radius: 2px;
+}
+.wrapper .item .content .quantity-box i:hover {
+  background-color: #f0efef;
+}
+.wrapper .item .content .quantity-box input {
+  font-size: 14.5px;
+  padding: 2px;
+  color: var(--color-text);
+  width: 60px;
+  text-align: center;
+}
+.wrapper .discount-wrapper {
+  width: 80%;
+  margin-left: 20px;
+}
+.wrapper .discount-wrapper h2 {
+  font-size: 18px;
+  color: #92353a;
+  text-align: center;
+}
+.wrapper .discount-wrapper .discount {
+  border: 0.5px solid #444343;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 80px;
+  margin-bottom: 15px;
+  box-shadow: var(--box-shadow);
+}
+.wrapper .discount-wrapper .discount:hover {
+  background-color: #f0efef;
+}
+.wrapper .discount-wrapper .discount img {
+  width: 120px;
+}
+.wrapper .discount-wrapper .discount:active {
+  background-color: var(--color-two);
+}
+.total {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 120px;
+  margin-right: 50%;
+}
+.total .total-title {
+  font-size: 16px;
+}
+button {
+  margin-top: 20px;
+  max-width: 1200px;
+  padding: 18px;
+  width: 100%;
+  margin-left: 120px;
+  background-color: #e42f2f;
+  color: white;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow);
+}
+button:hover {
+  background-color: #d02932;
+}

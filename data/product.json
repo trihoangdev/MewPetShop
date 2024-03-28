@@ -1,77 +1,86 @@
 [
   {
-    "name": "product-sale",
-    "items": [
-      {
-        "title": "Hạt Royal Canin Mini Adult cho chó trưởng thành",
-        "src": "image/product-sale-1.png",
-        "price": "180000"
-      },
-      {
-        "title": "Bánh thưởng mềm có nhân gói 8 thanh Churu Bee cho chó",
-        "src": "image/product-sale-2.png",
-        "price": "79000"
-      },
-      {
-        "title": "DORRIKEY Bánh thưởng cho mèo",
-        "src": "image/product-sale-3.png",
-        "price": "40000"
-      },
-      {
-        "title": "DORRIKEY Kềm cắt móng cho thú cưng tiện dụng",
-        "src": "image/product-sale-4.png",
-        "price": "20000"
-      }
-    ]
+    "id": "1",
+    "title": "Hạt Royal Canin Mini Adult cho chó trưởng thành",
+    "src": "image/product-sale-1.png",
+    "price": "180000",
+    "category": "product-sale"
   },
   {
-    "name": "product-new",
-    "items": [
-      {
-        "title": "Tông đơ tỉa lông giảm tiếng ồn có đèn chiếu Pakeway cho chó mèo",
-        "src": "image/product-new-1.png",
-        "price": "230000"
-      },
-      {
-        "title": " Thức ăn cho mèo Royal Canin - 2kg túi nguyên",
-        "src": "image/product-new-2.png",
-        "price": "480000"
-      },
-      {
-        "title": " Pate Mèo Royal Canin Mother Babycat Cho Mèo Mẹ & Mèo Con (Lon 195g)",
-        "src": "image/product-new-3.png",
-        "price": "55000"
-      },
-      {
-        "title": "Bàn cào móng DORRIKEY hình tròn chất lượng cao cho mèo cưng",
-        "src": "image/product-new-4.png",
-        "price": "66000"
-      }
-    ]
+    "id": "2",
+    "title": "Bánh thưởng mềm có nhân gói 8 thanh Churu Bee cho chó",
+    "src": "image/product-sale-2.png",
+    "price": "79000",
+    "category": "product-sale"
   },
   {
-    "name": "product-restock",
-    "items": [
-      {
-        "title": "Tông đơ tỉa lông giảm tiếng ồn có đèn chiếu Pakeway cho chó mèo",
-        "src": "image/product-restock-1.png",
-        "price": "230000"
-      },
-      {
-        "title": " Thức ăn cho mèo Royal Canin - 2kg túi nguyên",
-        "src": "image/product-restock-2.png",
-        "price": "480000"
-      },
-      {
-        "title": " Pate Mèo Royal Canin Mother Babycat Cho Mèo Mẹ & Mèo Con (Lon 195g)",
-        "src": "image/product-restock-3.png",
-        "price": "55000"
-      },
-      {
-        "title": "Bàn cào móng DORRIKEY hình tròn chất lượng cao cho mèo cưng",
-        "src": "image/product-restock-4.png",
-        "price": "66000"
-      }
-    ]
+    "id": "3",
+    "title": "DORRIKEY Bánh thưởng cho mèo",
+    "src": "image/product-sale-3.png",
+    "price": "40000",
+    "category": "product-sale"
+  },
+  {
+    "id": "4",
+    "title": "DORRIKEY Kềm cắt móng cho thú cưng tiện dụng",
+    "src": "image/product-sale-4.png",
+    "price": "20000",
+    "category": "product-sale"
+  },
+  {
+    "id": "5",
+    "title": "Tông đơ tỉa lông giảm tiếng ồn có đèn chiếu Pakeway cho chó mèo",
+    "src": "image/product-new-1.png",
+    "price": "230000",
+    "category": "product-new"
+  },
+  {
+    "id": "6",
+    "title": " Thức ăn cho mèo Royal Canin - 2kg túi nguyên",
+    "src": "image/product-new-2.png",
+    "price": "480000",
+    "category": "product-new"
+  },
+  {
+    "id": "7",
+    "title": " Pate Mèo Royal Canin Mother Babycat Cho Mèo Mẹ & Mèo Con (Lon 195g)",
+    "src": "image/product-new-3.png",
+    "price": "55000",
+    "category": "product-new"
+  },
+  {
+    "id": "8",
+    "title": "Bàn cào móng DORRIKEY hình tròn chất lượng cao cho mèo cưng",
+    "src": "image/product-new-4.png",
+    "price": "66000",
+    "category": "product-new"
+  },
+  {
+    "id": "9",
+    "title": "Tông đơ tỉa lông giảm tiếng ồn có đèn chiếu Pakeway cho chó mèo",
+    "src": "image/product-restock-1.png",
+    "price": "230000",
+    "category": "product-restock"
+  },
+  {
+    "id": "10",
+    "title": " Thức ăn cho mèo Royal Canin - 2kg túi nguyên",
+    "src": "image/product-restock-2.png",
+    "price": "480000",
+    "category": "product-restock"
+  },
+  {
+    "id": "11",
+    "title": " Pate Mèo Royal Canin Mother Babycat Cho Mèo Mẹ & Mèo Con (Lon 195g)",
+    "src": "image/product-restock-3.png",
+    "price": "55000",
+    "category": "product-restock"
+  },
+  {
+    "id": "12",
+    "title": "Bàn cào móng DORRIKEY hình tròn chất lượng cao cho mèo cưng",
+    "src": "image/product-restock-4.png",
+    "price": "66000",
+    "category": "product-restock"
   }
 ]
