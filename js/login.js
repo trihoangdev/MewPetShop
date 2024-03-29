@@ -200,6 +200,7 @@ btnRegister.addEventListener("click", function () {
   accounts.push(newAcc);
   //Ghi vào LocalStorage
   localStorage.setItem("accounts", JSON.stringify(accounts));
+  alert("Đăng ký thành công! Vui lòng đăng nhập để mua hàng!");
 });
 
 //Sự kiện đăng nhập tài khoản
