@@ -84,13 +84,13 @@ hr {
 }
 .wrapper .discount-wrapper .discount {
   border: 0.5px solid #444343;
-  border-radius: 20px;
+  /* border-radius: 20px; */
   display: flex;
   align-items: center;
   justify-content: space-around;
   height: 80px;
   margin-bottom: 15px;
-  box-shadow: var(--box-shadow);
+  /* box-shadow: var(--box-shadow); */
 }
 .wrapper .discount-wrapper .discount:hover {
   background-color: #f0efef;
@@ -107,8 +107,15 @@ hr {
   margin-left: 120px;
   margin-right: 50%;
 }
-.total .total-title {
-  font-size: 16px;
+.total .total-title,
+.total .discount-title,
+.payment-title {
+  font-size: 17px;
+}
+.total #total-price,
+#discount-price,
+#payment-price {
+  font-size: 17px;
 }
 button {
   margin-top: 20px;
@@ -118,9 +125,10 @@ button {
   margin-left: 120px;
   background-color: #e42f2f;
   color: white;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: var(--box-shadow);
+  font-size: 17px;
 }
 button:hover {
-  background-color: #d02932;
+  background-color: #eb3d46;
 }
