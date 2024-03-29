@@ -33,7 +33,7 @@ function showProductsInCart() {
     <h2 class="title">${productInCart[i].title}</h2>
     <p class="price">${formatPrice(productInCart[i].price)}</p>
     <div class="quantity-box">
-      <i class="fa-solid fa-chevron-down" id="btn-down" onclick = 'down(${i})'></i>
+      <i class="fa-solid fa-chevron-down" id="btn-down" onclick = 'down(${i},productInCart[${i}])'></i>
       <input
         type="text"
         name="quantity"
@@ -41,7 +41,7 @@ function showProductsInCart() {
         value="${productInCart[i].quantity}"
         readonly
       />
-      <i class="fa-solid fa-chevron-up" id="btn-up" onclick ='up(${i})' ></i>
+      <i class="fa-solid fa-chevron-up" id="btn-up" onclick ='up(${i},productInCart[${i}])' ></i>
     </div>
   </div>
 </div>
@@ -58,7 +58,7 @@ function formatPrice(price) {
   return formattedPrice;
 }
 //Thiết lập sk cho nút tăng
-function up(i) {
+function up(i, product) {
   // Lấy id của input quantity
   var id = "quantity" + i;
   // Tham chiếu đến ô quantity của nó
@@ -67,10 +67,11 @@ function up(i) {
   var quantityInt = parseInt(quantity.value);
   quantity.value = ++quantityInt;
   quantity.style.backgroundColor = "white";
+  updateQuantityToLocalStorage(quantityInt, product);
 }
 
 //Thiết lập sk cho nút giảm
-function down(i) {
+function down(i, product) {
   // Lấy id của input quantity
   var id = "quantity" + i;
   // Tham chiếu đến ô quantity của nó
@@ -81,4 +82,14 @@ function down(i) {
   else {
     quantity.style.backgroundColor = "#E26F70";
   }
+  updateQuantityToLocalStorage(quantityInt, product);
+}
+function updateQuantityToLocalStorage(newQuantity, product) {
+  product.quantity = newQuantity;
+  productInCart.forEach((element) => {
+    if (element.id == product.id) {
+      element.quantity = product.quantity;
+    }
+  });
+  localStorage.setItem("productInCart", JSON.stringify(productInCart));
 }
