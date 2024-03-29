@@ -133,3 +133,17 @@ body {
 .wrapper .home-link a:hover {
   text-decoration: underline;
 }
+
+/* CSS cho các error */
+#error-acc-register,
+#error-pass-register,
+#error-acc-login,
+#error-pass-login,
+#error-pass-again-register {
+  color: rgb(252, 35, 35);
+  padding: 0;
+  padding-top: 2px;
+  margin: 0 20px;
+  font-size: 13px;
+}
+/* End CSS cho các error */

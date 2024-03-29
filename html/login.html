@@ -22,13 +22,20 @@
         <div class="login-form">
           <h1>Đăng nhập</h1>
           <div class="input-box">
-            <input type="text" placeholder="Tên đăng nhập" />
+            <input
+              id="account-field-login"
+              type="text"
+              placeholder="Tên đăng nhập"
+            />
             <i class="fa-solid fa-user"></i>
+            <p id="error-acc-login"></p>
           </div>
+
           <div class="input-box">
             <input type="password" placeholder="Mật khẩu" />
             <i id="show-hide-pass-login" class="fa-solid fa-lock"></i>
             <!-- <i class="fa-solid fa-unlock"></i> -->
+            <p id="error-pass-login"></p>
           </div>
 
           <div class="forgot-box">
@@ -42,7 +49,7 @@
             <a href="#">Quên mật khẩu?</a>
           </div>
 
-          <button type="submit" class="button">Đăng nhập</button>
+          <button id="btn-login" type="submit" class="button">Đăng nhập</button>
 
           <div class="register-login-link">
             <p>
@@ -58,12 +65,18 @@
         <div class="register-form" ;>
           <h1>Đăng ký</h1>
           <div class="input-box">
-            <input type="text" placeholder="Tên đăng nhập" />
+            <input
+              id="account-field-register"
+              type="text"
+              placeholder="Tên đăng nhập"
+            />
             <i class="fa-solid fa-user"></i>
+            <p id="error-acc-register"></p>
           </div>
           <div class="input-box">
             <input type="password" placeholder="Mật khẩu" />
             <i id="show-hide-pass-register" class="fa-solid fa-lock"></i>
+            <p id="error-pass-register"></p>
           </div>
           <div class="input-box">
             <input
@@ -72,14 +85,18 @@
               placeholder="Nhập lại mật khẩu"
             />
             <i id="show-hide-pass-register-again" class="fa-solid fa-lock"></i>
+            <p id="error-pass-again-register"></p>
           </div>
+
           <div class="register-login-link">
             <p>
               Bạn đã có tài khoản?
               <a href="#" id="login-link">Đăng nhập ngay!</a>
             </p>
           </div>
-          <button type="submit" class="button">Đăng ký</button>
+          <button id="btn-register" type="submit" class="button">
+            Đăng ký
+          </button>
           <div class="home-link">
             <a href="../index.html">Quay lại trang chủ</a>
           </div>
