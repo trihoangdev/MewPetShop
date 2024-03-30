@@ -2,6 +2,7 @@
 var quantityInCart = document.getElementById("quantity-in-cart");
 var discount1 = document.getElementById("discount1");
 var discount2 = document.getElementById("discount2");
+var btnPayment = document.getElementById("btn-payment");
 // Lấy thông tin của sản phẩm từ localStorage
 const productInCart = JSON.parse(localStorage.getItem("productInCart"));
 document.addEventListener("DOMContentLoaded", function () {
@@ -187,3 +188,6 @@ function calculatePaymentPrice() {
   var payment = totalPrice + totalDiscount;
   document.getElementById("payment-price").innerHTML = formatPrice(payment);
 }
+btnPayment.addEventListener("click", function () {
+  window.location.href = "../html/delivery-info.html";
+});
