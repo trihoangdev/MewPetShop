@@ -5,6 +5,7 @@ const productInCart = JSON.parse(localStorage.getItem("productInCart"));
 document.addEventListener("DOMContentLoaded", function () {
   showQuantityInCart();
   showProductsInCart();
+  autoChangeTotalPrice();
 });
 function showQuantityInCart() {
   var currentQuantity = 0;
@@ -92,4 +93,16 @@ function updateQuantityToLocalStorage(newQuantity, product) {
     }
   });
   localStorage.setItem("productInCart", JSON.stringify(productInCart));
+}
+function calculateTotalPrice() {
+  var sum = 0;
+  productInCart.forEach((element) => {
+    sum += element.price * element.quantity;
+  });
+  return sum;
+}
+function autoChangeTotalPrice() {
+  var sum = calculateTotalPrice();
+  console.log(sum);
+  document.getElementById("total-price").innerHTML = formatPrice(sum);
 }
