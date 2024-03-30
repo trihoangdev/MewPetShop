@@ -30,7 +30,9 @@
     <header class="header">
       <div class="header-top">
         <div class="header-section-one">
-          <a href="#"> <img src="../image/logo.png" alt="Logo" /></a>
+          <a href="../index.html">
+            <img src="../image/logo.png" alt="Logo"
+          /></a>
           <input type="text" name="find" id="find" />
           <i class="fa-solid fa-magnifying-glass"></i>
         </div>
@@ -53,7 +55,8 @@
         <div class="section1-header">
           <h1>Meowpetshop</h1>
           <p>
-            <a href="#">Giỏ hàng</a> > <a href="#">Phương thức thanh toán</a>
+            <a href="../html/cart.html">Giỏ hàng</a> >
+            <a href="#">Phương thức thanh toán</a>
           </p>
         </div>
         <!-- end Block header wrapper -->
@@ -61,7 +64,7 @@
         <!-- Thông tin giao hàng -->
         <div class="block1">
           <h2>Thông tin giao hàng</h2>
-          <p>Bạn đã có tài khoản? <a href="../html/login.html">Đăng nhập</a></p>
+          <!-- <p>Bạn đã có tài khoản? <a href="../html/login.html">Đăng nhập</a></p> -->
           <input
             type="text"
             name="fullName"
@@ -133,14 +136,14 @@
                   name="delivery-method"
                   id="delivery-normal"
                 />
-                <label for="deliery-normal">Giao hàng thường (3-4 ngày)</label>
+                <label for="delivery-normal">Giao hàng thường (3-4 ngày)</label>
               </div>
               <div class="block2-price">20.000đ</div>
             </div>
             <div class="block2-inner">
               <div class="block2-title">
                 <input type="radio" name="delivery-method" id="delivery-fast" />
-                <label for="deliery-normal">Giao hàng nhanh (1-2 ngày)</label>
+                <label for="delivery-fast">Giao hàng nhanh (1-2 ngày)</label>
               </div>
               <div class="block2-price">31.000đ</div>
             </div>
@@ -149,9 +152,9 @@
                 <input
                   type="radio"
                   name="delivery-method"
-                  id="delivery-normal"
+                  id="delivery-very-fast"
                 />
-                <label for="deliery-normal">Giao hoả tốc</label>
+                <label for="delivery-very-fast">Giao hoả tốc</label>
               </div>
               <div class="block2-price">40.000đ</div>
             </div>
@@ -164,20 +167,28 @@
           <h2>Phương thức thanh toán</h2>
           <div class="block3-wrapper-inner">
             <div class="block3-inner">
-              <input type="radio" name="payment-method" id="payment-cod" />
-              <label for="payment-cod">Thanh toán khi nhận hàng (COD)</label>
+              <div class="block3-title">
+                <input type="radio" name="payment-method" id="payment-cod" />
+                <label for="payment-cod">Thanh toán khi nhận hàng (COD)</label>
+              </div>
             </div>
             <div class="block3-inner">
-              <input
-                type="radio"
-                name="payment-method"
-                id="payment-bank-transfer"
-              />
-              <label for="payment-bank-transfer">Chuyển khoản ngân hàng</label>
+              <div class="block3-title">
+                <input
+                  type="radio"
+                  name="payment-method"
+                  id="payment-bank-transfer"
+                />
+                <label for="payment-bank-transfer"
+                  >Chuyển khoản ngân hàng</label
+                >
+              </div>
             </div>
             <div class="block3-inner">
-              <input type="radio" name="payment-method" id="payment-momo" />
-              <label for="payment-momo">Ví momo</label>
+              <div class="block3-title">
+                <input type="radio" name="payment-method" id="payment-momo" />
+                <label for="payment-momo">Ví momo</label>
+              </div>
             </div>
           </div>
         </div>
