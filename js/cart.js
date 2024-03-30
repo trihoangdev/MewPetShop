@@ -1,11 +1,14 @@
 //Tham chiếu đến các thẻ div để truyền thông tin
 var quantityInCart = document.getElementById("quantity-in-cart");
+var discount1 = document.getElementById("discount1");
+var discount2 = document.getElementById("discount2");
 // Lấy thông tin của sản phẩm từ localStorage
 const productInCart = JSON.parse(localStorage.getItem("productInCart"));
 document.addEventListener("DOMContentLoaded", function () {
   showQuantityInCart();
   showProductsInCart();
   autoChangeTotalPrice();
+  calculatePaymentPrice();
 });
 function showQuantityInCart() {
   var currentQuantity = 0;
@@ -50,13 +53,21 @@ function showProductsInCart() {
   }
   document.getElementById("cart-product-list").innerHTML = productHTML;
 }
-
 function formatPrice(price) {
   // Chuyển số thành chuỗi và thêm dấu chấm phẩy sau mỗi 3 chữ số từ cuối lên
   let formattedPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   // Thêm ký tự 'đ' vào cuối chuỗi
   formattedPrice += "đ";
   return formattedPrice;
+}
+function unformatPrice(formattedPrice) {
+  // Xóa ký tự 'đ' cuối chuỗi
+  let priceWithoutSymbol = formattedPrice.replace(/đ/g, "");
+  // Xóa tất cả các dấu chấm phẩy trong chuỗi
+  let priceWithoutCommas = priceWithoutSymbol.replace(/\./g, "");
+  // Chuyển chuỗi thành số
+  let unformattedPrice = parseFloat(priceWithoutCommas);
+  return unformattedPrice;
 }
 //Thiết lập sk cho nút tăng
 function up(i, product) {
@@ -69,8 +80,9 @@ function up(i, product) {
   quantity.value = ++quantityInt;
   quantity.style.backgroundColor = "white";
   updateQuantityToLocalStorage(quantityInt, product);
+  calculateDiscountHandler();
+  calculatePaymentPrice();
 }
-
 //Thiết lập sk cho nút giảm
 function down(i, product) {
   // Lấy id của input quantity
@@ -84,6 +96,9 @@ function down(i, product) {
     quantity.style.backgroundColor = "#E26F70";
   }
   updateQuantityToLocalStorage(quantityInt, product);
+  autoChangeTotalPrice();
+  calculateDiscountHandler();
+  calculatePaymentPrice();
 }
 function updateQuantityToLocalStorage(newQuantity, product) {
   product.quantity = newQuantity;
@@ -93,6 +108,7 @@ function updateQuantityToLocalStorage(newQuantity, product) {
     }
   });
   localStorage.setItem("productInCart", JSON.stringify(productInCart));
+  autoChangeTotalPrice();
 }
 function calculateTotalPrice() {
   var sum = 0;
@@ -103,6 +119,71 @@ function calculateTotalPrice() {
 }
 function autoChangeTotalPrice() {
   var sum = calculateTotalPrice();
-  console.log(sum);
   document.getElementById("total-price").innerHTML = formatPrice(sum);
+}
+var activeDiscount1 = false;
+var activeDiscount2 = false;
+discount1.addEventListener("click", function () {
+  if (!activeDiscount1 && !activeDiscount2) {
+    activeDiscount1 = true;
+    discount1.style.backgroundColor = "var(--color-one)";
+  } else if (activeDiscount2) {
+    activeDiscount1 = true;
+    activeDiscount2 = false;
+    discount2.style.backgroundColor = "white";
+    discount1.style.backgroundColor = "var(--color-one)";
+  } else {
+    activeDiscount1 = false;
+    discount1.style.backgroundColor = "white";
+  }
+  calculateDiscountHandler();
+  calculatePaymentPrice();
+});
+discount2.addEventListener("click", function () {
+  if (!activeDiscount2 && !activeDiscount1) {
+    activeDiscount2 = true;
+    discount2.style.backgroundColor = "var(--color-one)";
+  } else if (activeDiscount1) {
+    activeDiscount2 = true;
+    activeDiscount1 = false;
+    discount1.style.backgroundColor = "white";
+    discount2.style.backgroundColor = "var(--color-one)";
+  } else {
+    activeDiscount2 = false;
+    discount2.style.backgroundColor = "white";
+  }
+  calculateDiscountHandler();
+  calculatePaymentPrice();
+});
+function calculateDiscountHandler() {
+  var discounttxt = document.getElementById("discount-price");
+  var totalPricetxt = unformatPrice(
+    document.getElementById("total-price").textContent
+  );
+  //sự kiện giảm giá cho discount1
+  if (activeDiscount1) {
+    if (totalPricetxt > 1000000)
+      discounttxt.innerHTML = "-" + formatPrice(totalPricetxt * 0.15);
+    return;
+  }
+  //sự kiện giảm giá cho discount2
+  if (activeDiscount2) {
+    var totalDiscount = 0;
+    for (var i = 0; i < productInCart.length; i++) {
+      var calculatePrice = productInCart[i].price * productInCart[i].quantity;
+      totalDiscount += calculatePrice * 0.05;
+    }
+    discounttxt.innerHTML = "-" + formatPrice(totalDiscount);
+    return;
+  }
+}
+function calculatePaymentPrice() {
+  var totalPrice = unformatPrice(
+    document.getElementById("total-price").textContent
+  );
+  var totalDiscount = unformatPrice(
+    document.getElementById("discount-price").textContent
+  );
+  var payment = totalPrice + totalDiscount;
+  document.getElementById("payment-price").innerHTML = formatPrice(payment);
 }
