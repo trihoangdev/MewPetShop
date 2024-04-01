@@ -191,6 +191,10 @@ function calculatePaymentPrice() {
   document.getElementById("payment-price").innerHTML = formatPrice(payment);
 }
 btnPayment.addEventListener("click", function () {
+  if (document.getElementById("payment-price").textContent == "0đ") {
+    alert("Chưa có sản phẩm trong giỏ hàng. Vui lòng chọn thêm sản phẩm");
+    return;
+  }
   //Lưu giá tiền
   var paymentPrice = document.getElementById("payment-price").textContent;
   localStorage.setItem("paymentPrice", unformatPrice(paymentPrice));
