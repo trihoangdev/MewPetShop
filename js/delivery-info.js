@@ -11,7 +11,6 @@ var submitBtn = document.getElementById("submit");
 var fullName = document.getElementById("fullName");
 var deliveryMethod = "delivery-method"; // Tên của nhóm radio button
 var deliveryWay = "delivery-way"; // Tên của nhóm radio button
-var paymentMethod = "payment-method"; // Tên của nhóm radio button
 //Load DOM
 document.addEventListener("DOMContentLoaded", function () {
   onLoad();
@@ -57,12 +56,64 @@ submitBtn.addEventListener("click", function () {
   checkAllInfoFilled();
   if (!checkAll) {
     alert("Thông tin cần được nhập đầy đủ và đúng định dạng");
+    return;
   }
-  //Lưu giá tiền ship vào LocalStorage
+  //Lưu thông tin người dùng vào LocalStorage
+  var fullName = document.getElementById("fullName").value;
+  var email = document.getElementById("email").value;
+  var phoneNumber = document.getElementById("phoneNumber").value;
+  var address = getAddress();
   var shipPrice = saveShipPrice();
-  localStorage.setItem("shipPrice" , shipPrice);
+  var paymentMethod = getPaymentMethod();
+  var deliveryInfo = {
+    fullName: fullName,
+    email: email,
+    phoneNumber: phoneNumber,
+    address: address,
+    shipPrice: shipPrice,
+    paymentMethod: paymentMethod,
+  };
+  localStorage.setItem("deliveryInfo", JSON.stringify(deliveryInfo));
   alert("Cập nhật thông tin thành công!");
 });
+
+//Lấy phương thức thanh toán
+function getPaymentMethod() {
+  var radioButtons = document.getElementsByName("payment-method");
+  for (var i = 0; i < radioButtons.length; i++) {
+    if (radioButtons[i].checked) {
+      // Lấy nhãn của radio button tương ứng
+      var label = document.querySelector(
+        'label[for="' + radioButtons[i].id + '"]'
+      );
+      if (label) {
+        return label.innerText; // Trả về văn bản trong nhãn
+      }
+    }
+  }
+  return "";
+}
+//Lấy địa chỉ
+function getAddress() {
+  if (document.getElementsByName(deliveryWay)[0].checked) {
+    var address = document.getElementById("address").value;
+    address +=
+      ", " +
+      document.getElementById("city").options[
+        document.getElementById("city").selectedIndex
+      ].value +
+      ", ";
+    address +=
+      document.getElementById("district").options[
+        document.getElementById("district").selectedIndex
+      ].value + ", ";
+    address +=
+      document.getElementById("ward").options[
+        document.getElementById("district").selectedIndex
+      ].value;
+    return address;
+  } else return "";
+}
 
 //Lấy giá tiền ship
 function saveShipPrice() {
@@ -98,19 +149,17 @@ function checkAllInfoFilled() {
       var selects = document.querySelectorAll("select"); // Lấy tất cả các thẻ select trong trang
       for (var i = 0; i < selects.length; i++) {
         if (selects[0].selectedIndex == 0) {
-          console.log(selects[i].selectedIndex );
-          console.log(selects[i]);
           checkAll = false; // Nếu có bất kỳ ô select nào chưa được chọn, trả về false
           return; // Ngay sau khi tìm thấy ô select chưa được chọn, thoát khỏi hàm
         }
       }
       // Nếu không có ô select nào chưa được chọn, đặt checkAll là true
-      checkAll = true; 
+      checkAll = true;
     } else {
       // Nếu không phải giao hàng tại nhà, không cần kiểm tra ô select, đặt checkAll là true
       checkAll = true;
     }
-    
+
     // Kiểm tra xem phương thức giao hàng đã được chọn hay không
     if (isAnyRadioButtonChecked(deliveryMethod)) {
       checkAll = true;
