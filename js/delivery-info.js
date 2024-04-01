@@ -55,15 +55,74 @@ email.addEventListener("change", function () {
 //Sự kiện xác nhận thanh toán
 submitBtn.addEventListener("click", function () {
   checkAllInfoFilled();
+  if (!checkAll) {
+    alert("Thông tin cần được nhập đầy đủ và đúng định dạng");
+  }
+  //Lưu giá tiền ship vào LocalStorage
+  var shipPrice = saveShipPrice();
+  localStorage.setItem("shipPrice" , shipPrice);
+  alert("Cập nhật thông tin thành công!");
 });
+
+//Lấy giá tiền ship
+function saveShipPrice() {
+  var shipPrice = 0;
+  var deliveryMethods = document.getElementsByName(deliveryMethod);
+  for (var i = 0; i < deliveryMethods.length; i++) {
+    if (deliveryMethods[i].checked) {
+      // Tìm đến phần tử block2-price từ phần tử radio button được chọn
+      var block2Price = deliveryMethods[i]
+        .closest(".block2-inner")
+        .querySelector(".block2-price");
+
+      if (block2Price) {
+        shipPrice = unformatPrice(block2Price.innerHTML);
+      }
+      break; // Thoát khỏi vòng lặp sau khi đã tìm thấy giá tiền
+    }
+  }
+  return shipPrice;
+}
+//Kiểm tra tất cả thông tin có còn rỗng không
 function checkAllInfoFilled() {
   // Kiểm tra xem tất cả các điều kiện đã được đáp ứng hay không
-  if (email.value != "" && fullName.value == "" && phoneNumber.value != "" && isAnyRadioButtonChecked(deliveryMethod) && isAnyRadioButtonChecked(deliveryWay) && isAnyRadioButtonChecked(paymentMethod)) {
-    alert("Tất cả thông tin đã được điền.");
+  if (
+    email.value != "" &&
+    fullName.value != "" &&
+    phoneNumber.value != "" &&
+    isAnyRadioButtonChecked(deliveryWay)
+  ) {
+    //Nếu giao hàng tại nhà thì check xem nếu trong phương thức giao hàng chưa check thì trả về false
+    //Và kiểm tra xem các ô select đã được chọn chưa
+    if (document.getElementsByName(deliveryWay)[0].checked) {
+      var selects = document.querySelectorAll("select"); // Lấy tất cả các thẻ select trong trang
+      for (var i = 0; i < selects.length; i++) {
+        if (selects[0].selectedIndex == 0) {
+          console.log(selects[i].selectedIndex );
+          console.log(selects[i]);
+          checkAll = false; // Nếu có bất kỳ ô select nào chưa được chọn, trả về false
+          return; // Ngay sau khi tìm thấy ô select chưa được chọn, thoát khỏi hàm
+        }
+      }
+      // Nếu không có ô select nào chưa được chọn, đặt checkAll là true
+      checkAll = true; 
+    } else {
+      // Nếu không phải giao hàng tại nhà, không cần kiểm tra ô select, đặt checkAll là true
+      checkAll = true;
+    }
+    
+    // Kiểm tra xem phương thức giao hàng đã được chọn hay không
+    if (isAnyRadioButtonChecked(deliveryMethod)) {
+      checkAll = true;
+    } else {
+      checkAll = false;
+    }
   } else {
-    alert("Vui lòng điền đầy đủ thông tin.");
+    // Một trong các điều kiện không được đáp ứng, đặt checkAll thành false
+    checkAll = false;
   }
 }
+
 function isAnyRadioButtonChecked(radioGroupName) {
   var radioButtons = document.getElementsByName(radioGroupName);
   for (var i = 0; i < radioButtons.length; i++) {
@@ -185,4 +244,20 @@ function loadQuantityInCart() {
 
   //truyền thông tin từ local storage vào các thẻ
   quantityInCart.innerHTML = currentQuantity;
+}
+function formatPrice(price) {
+  // Chuyển số thành chuỗi và thêm dấu chấm phẩy sau mỗi 3 chữ số từ cuối lên
+  let formattedPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  // Thêm ký tự 'đ' vào cuối chuỗi
+  formattedPrice += "đ";
+  return formattedPrice;
+}
+function unformatPrice(formattedPrice) {
+  // Xóa ký tự 'đ' cuối chuỗi
+  let priceWithoutSymbol = formattedPrice.replace(/đ/g, "");
+  // Xóa tất cả các dấu chấm phẩy trong chuỗi
+  let priceWithoutCommas = priceWithoutSymbol.replace(/\./g, "");
+  // Chuyển chuỗi thành số
+  let unformattedPrice = parseFloat(priceWithoutCommas);
+  return unformattedPrice;
 }
