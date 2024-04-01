@@ -1,7 +1,17 @@
 import cityData from "../data/country.json" with { type: "json" };
 
+//Lấy tham chiếu đến các thẻ
 var citySelect = document.getElementById("city");
-
+var quantityInCart = document.getElementById("quantity-in-cart");
+var phoneNumber = document.getElementById("phoneNumber");
+var errorPhone = document.getElementById("error-phone");
+var email = document.getElementById("email");
+var errorEmail = document.getElementById("error-email");
+var submitBtn = document.getElementById("submit");
+var fullName = document.getElementById("fullName");
+var deliveryMethod = "delivery-method"; // Tên của nhóm radio button
+var deliveryWay = "delivery-way"; // Tên của nhóm radio button
+var paymentMethod = "payment-method"; // Tên của nhóm radio button
 //Load DOM
 document.addEventListener("DOMContentLoaded", function () {
   onLoad();
@@ -10,6 +20,59 @@ document.addEventListener("DOMContentLoaded", function () {
   loadQuantityInCart();
 });
 
+//Các sự kiện
+//Biến dùng kiểm tra all thông tin hợp lệ
+var checkAll = true;
+//Sự kiện kiểm tra định dạng SĐT
+phoneNumber.addEventListener("change", function () {
+  var phoneTxt = phoneNumber.value;
+  if (/(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})/.test(phoneTxt) == false) {
+    //sai định dạng
+    checkAll = false;
+    //Gán error
+    errorPhone.innerHTML = "SĐT không đúng định dạng!";
+  } else {
+    phoneNumber.style.backgroundColor = "white";
+    errorPhone.innerHTML = "";
+    checkAll - true;
+  }
+});
+//Sự kiện kiểm tra định dạng Email
+email.addEventListener("change", function () {
+  var emailTxt = email.value;
+  var regex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+  if (regex.test(emailTxt) == false) {
+    //sai định dạng
+    checkAll = false;
+    //Gán error
+    errorEmail.innerHTML = "Email không đúng định dạng!";
+  } else {
+    phoneNumber.style.backgroundColor = "white";
+    errorEmail.innerHTML = "";
+    checkAll - true;
+  }
+});
+//Sự kiện xác nhận thanh toán
+submitBtn.addEventListener("click", function () {
+  checkAllInfoFilled();
+});
+function checkAllInfoFilled() {
+  // Kiểm tra xem tất cả các điều kiện đã được đáp ứng hay không
+  if (email.value != "" && fullName.value == "" && phoneNumber.value != "" && isAnyRadioButtonChecked(deliveryMethod) && isAnyRadioButtonChecked(deliveryWay) && isAnyRadioButtonChecked(paymentMethod)) {
+    alert("Tất cả thông tin đã được điền.");
+  } else {
+    alert("Vui lòng điền đầy đủ thông tin.");
+  }
+}
+function isAnyRadioButtonChecked(radioGroupName) {
+  var radioButtons = document.getElementsByName(radioGroupName);
+  for (var i = 0; i < radioButtons.length; i++) {
+    if (radioButtons[i].checked) {
+      return true; // Nếu có một radio button nào đó được chọn, trả về true
+    }
+  }
+  return false; // Nếu không có radio button nào được chọn, trả về false
+}
 function readAllCity() {
   var cities = []; // Khởi tạo mảng để lưu trữ tên thành phố
 
@@ -107,7 +170,19 @@ function changeWard() {
   });
 }
 function loadQuantityInCart() {
-  var quantityInCart = JSON.parse(localStorage.getItem("productInCart").length);
-  console.log(productInCart);
-  document.getElementById("quantity-in-cart").innerHTML = quantityInCart;
+  var currentQuantity = 0;
+
+  // Lấy giá trị từ localStorage
+  var productInCart = JSON.parse(localStorage.getItem("productInCart"));
+
+  // Kiểm tra nếu quantityInCart không tồn tại hoặc là null, thiết lập giá trị mặc định là 0 và lưu vào localStorage
+  if (!productInCart) {
+    currentQuantity = 0;
+  } else {
+    var length = productInCart.length;
+    currentQuantity = length;
+  }
+
+  //truyền thông tin từ local storage vào các thẻ
+  quantityInCart.innerHTML = currentQuantity;
 }

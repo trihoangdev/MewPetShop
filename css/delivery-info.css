@@ -1,6 +1,12 @@
 p {
   color: var(--color-text);
 }
+.error {
+  color: red;
+  font-size: 13px;
+  padding: 0px;
+  margin: 0px;
+}
 a:hover {
   text-decoration: underline;
   color: #297f99;
@@ -45,14 +51,13 @@ a:hover {
   width: 100%;
 }
 
-.wrapper
-  .wrapper-section1
-  .block1
-  .block1-inner-email-phone
-  input:nth-child(2) {
-  margin-left: 4%;
+.wrapper .wrapper-section1 .block1 .block1-inner-email-phone .inner-email,
+.inner-phone {
+  width: 49%;
 }
-
+.wrapper .wrapper-section1 .block1 .block1-inner-email-phone .inner-phone {
+  margin-left: 2%;
+}
 .wrapper .wrapper-section1 .block1 .delivery-box,
 .wrapper .wrapper-section1 .block2-wrapper-inner,
 .wrapper .wrapper-section1 .block3-wrapper-inner {

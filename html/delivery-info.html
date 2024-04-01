@@ -72,23 +72,25 @@
             placeholder="Họ và tên"
           />
           <div class="block1-inner-email-phone">
-            <input type="email" name="email" id="email" placeholder="Email" />
-            <input
-              type="text"
-              name="phoneNumber"
-              id="phoneNumber"
-              placeholder="Số điện thoại"
-            />
+            <div class="inner-email">
+              <input type="email" name="email" id="email" placeholder="Email" />
+              <p class="error" id="error-email"></p>
+            </div>
+            <div class="inner-phone">
+              <input
+                type="text"
+                name="phoneNumber"
+                id="phoneNumber"
+                placeholder="Số điện thoại"
+              />
+              <p class="error" id="error-phone"></p>
+            </div>
           </div>
           <div class="delivery-box">
             <div class="delivery-1">
               <div class="delivery-1-title-wrapper">
                 <div class="delivery-1-title">
-                  <input
-                    type="radio"
-                    name="delivery-method"
-                    id="delivery-home"
-                  />
+                  <input type="radio" name="delivery-way" id="delivery-home" />
                   <label for="delivery-home">Giao hàng tận nơi</label>
                 </div>
               </div>
@@ -116,7 +118,7 @@
               <div class="delivery-2-title">
                 <input
                   type="radio"
-                  name="delivery-method"
+                  name="delivery-way"
                   id="delivery-shop"
                 /><label for="delivery-shop">Nhận tại cửa hàng</label>
               </div>
@@ -196,8 +198,8 @@
       </div>
       <!-- Section2: Xác nhận -->
       <div class="section2">
-        <a href="#">Giỏ hàng</a>
-        <button>Xác nhận</button>
+        <a href="../html/cart.html">Giỏ hàng</a>
+        <button id="submit">Xác nhận</button>
       </div>
     </div>
     <!-- end content -->
