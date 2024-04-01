@@ -38,6 +38,7 @@ hr {
 }
 .wrapper .item {
   display: flex;
+  position: relative;
 }
 .wrapper .item img {
   width: 150px;
@@ -72,6 +73,19 @@ hr {
   color: var(--color-text);
   width: 60px;
   text-align: center;
+}
+.wrapper .item .delete-item {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 25px;
+  padding: 5px;
+}
+.wrapper .item .delete-item:hover {
+  background-color: #f0efef;
+}
+.wrapper .item hr {
+  display: block;
 }
 .wrapper .discount-wrapper {
   width: 80%;

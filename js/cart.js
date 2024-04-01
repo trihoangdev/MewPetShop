@@ -49,6 +49,7 @@ function showProductsInCart() {
       <i class="fa-solid fa-chevron-up" id="btn-up" onclick ='up(${i},productInCart[${i}])' ></i>
     </div>
   </div>
+  <img src="../image/x.svg" alt="" class="delete-item" onclick='removeItem(this)'/>
 </div>
 <hr />`;
   }
@@ -158,6 +159,7 @@ discount2.addEventListener("click", function () {
 });
 function calculateDiscountHandler() {
   var discounttxt = document.getElementById("discount-price");
+  discounttxt.innerHTML = "-0đ";
   var totalPricetxt = unformatPrice(
     document.getElementById("total-price").textContent
   );
@@ -195,3 +197,21 @@ btnPayment.addEventListener("click", function () {
   //Chuyển trang
   window.location.href = "../html/delivery-info.html";
 });
+
+function removeItem(child) {
+  var parent = child.parentNode;
+  // Xoá parent khỏi productInCart
+  var index = Array.from(parent.parentNode.children).indexOf(parent);
+  productInCart.splice(index, 1);
+  // Cập nhật localStorage
+  localStorage.setItem("productInCart", JSON.stringify(productInCart));
+  // Load lại sản phẩm trong giỏ hàng
+  showProductsInCart();
+  //Load lại số sản phẩm ở giỏ hàng
+  showQuantityInCart();
+  //Load lại giá
+  autoChangeTotalPrice();
+  calculateTotalPrice();
+  calculateDiscountHandler();
+  calculatePaymentPrice();
+}
