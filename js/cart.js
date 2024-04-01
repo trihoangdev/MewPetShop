@@ -189,5 +189,9 @@ function calculatePaymentPrice() {
   document.getElementById("payment-price").innerHTML = formatPrice(payment);
 }
 btnPayment.addEventListener("click", function () {
+  //Lưu giá tiền
+  var paymentPrice = document.getElementById("payment-price").textContent;
+  localStorage.setItem("paymentPrice", paymentPrice);
+  //Chuyển trang
   window.location.href = "../html/delivery-info.html";
 });
