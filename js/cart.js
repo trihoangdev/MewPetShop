@@ -33,25 +33,28 @@ function showProductsInCart() {
   var productHTML = ""; // Khởi tạo biến productHTML trước khi sử dụng
   for (var i = 0; i < productInCart.length; i++) {
     productHTML += `<div class="item">
-  <img src="../${productInCart[i].src}" alt="" />
-  <div class="content">
-    <h2 class="title">${productInCart[i].title}</h2>
-    <p class="price">${formatPrice(productInCart[i].price)}</p>
-    <div class="quantity-box">
-      <i class="fa-solid fa-chevron-down" id="btn-down" onclick = 'down(${i},productInCart[${i}])'></i>
-      <input
-        type="text"
-        name="quantity"
-        id = "quantity${i}"
-        value="${productInCart[i].quantity}"
-        readonly
-      />
-      <i class="fa-solid fa-chevron-up" id="btn-up" onclick ='up(${i},productInCart[${i}])' ></i>
+    <img src="../${productInCart[i].src}" alt="" />
+    <div class="content">
+      <h2 class="title">${productInCart[i].title}</h2>
+      <p class="price">${formatPrice(productInCart[i].price)}</p>
+      <div class="quantity-box">
+        <i class="fa-solid fa-chevron-down" id="btn-down" onclick = 'down(${i},productInCart[${i}])'></i>
+        <input
+          type="text"
+          name="quantity"
+          id = "quantity${i}"
+          value="${productInCart[i].quantity}"
+          readonly
+        />
+        <i class="fa-solid fa-chevron-up" id="btn-up" onclick ='up(${i},productInCart[${i}])' ></i>
+      </div>
     </div>
+    <img src="../image/x.svg" alt="" class="delete-item" onclick='removeItem(${
+      productInCart[i].id
+    })'/>
+
   </div>
-  <img src="../image/x.svg" alt="" class="delete-item" onclick='removeItem(this)'/>
-</div>
-<hr />`;
+  <hr />`;
   }
   document.getElementById("cart-product-list").innerHTML = productHTML;
 }
@@ -211,14 +214,18 @@ btnPayment.addEventListener("click", function () {
   //Chuyển trang
   window.location.href = "../html/delivery-info.html";
 });
-
-function removeItem(child) {
-  var parent = child.parentNode;
-  // Xoá parent khỏi productInCart
-  var index = Array.from(parent.parentNode.children).indexOf(parent);
-  productInCart.splice(index, 1);
-  // Cập nhật localStorage
-  localStorage.setItem("productInCart", JSON.stringify(productInCart));
+function removeItem(idToRemove) {
+  console.log(idToRemove);
+  // Lấy mảng từ localStorage
+  var productInCart = JSON.parse(localStorage.getItem("productInCart"));
+  // Tìm và xoá phần tử có id = idToRemove
+  var updatedProductInCart = productInCart.filter(function (product) {
+    return product.id != idToRemove;
+  });
+  console.log(updatedProductInCart);
+  // Cập nhật lại mảng trong localStorage
+  localStorage.setItem("productInCart", JSON.stringify(updatedProductInCart));
+  window.location.reload();
   // Load lại sản phẩm trong giỏ hàng
   showProductsInCart();
   //Load lại số sản phẩm ở giỏ hàng
