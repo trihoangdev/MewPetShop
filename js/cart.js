@@ -195,9 +195,19 @@ btnPayment.addEventListener("click", function () {
     alert("Chưa có sản phẩm trong giỏ hàng. Vui lòng chọn thêm sản phẩm");
     return;
   }
+  //Lưu giá tiền chưa giảm
+  var paymentNotDiscount = formatPrice(
+    document.getElementById("total-price").textContent
+  );
+  localStorage.setItem("paymentNotDiscount", unformatPrice(paymentNotDiscount));
   //Lưu giá tiền
   var paymentPrice = document.getElementById("payment-price").textContent;
   localStorage.setItem("paymentPrice", unformatPrice(paymentPrice));
+  //Lưu giảm giá
+  var discountPrice = formatPrice(
+    document.getElementById("discount-price").textContent
+  );
+  localStorage.setItem("discountPrice", unformatPrice(discountPrice));
   //Chuyển trang
   window.location.href = "../html/delivery-info.html";
 });

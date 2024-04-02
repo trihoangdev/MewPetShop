@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Giỏ hàng</title>
+    <!-- Nhúng file reset -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Link code có thể nhúng icon -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!--Nhúng CSS  -->
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../css/bill-info.css" />
+  </head>
+  <body>
+    <!-- header -->
+    <header class="header">
+      <div class="header-top">
+        <div class="header-section-one">
+          <a href="../index.html">
+            <img src="../image/logo.png" alt="Logo"
+          /></a>
+          <input type="text" name="find" id="find" />
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+        <div class="header-section-two">
+          <a href="../html/login.html"
+            ><img src="../image/user.svg" alt="user"
+          /></a>
+          <a href="#"><img src="../image/cart.svg" alt="cart" /></a>
+          <p id="quantity-in-cart">0</p>
+        </div>
+      </div>
+    </header>
+    <!-- End header -->
+
+    <!-- Body -->
+    <div class="body-header">
+      <span
+        ><a href="../index.html">Trang chủ</a> >
+        <a href="#" id="title">Đơn hàng</a></span
+      >
+    </div>
+    <div class="body-head">
+      <h1>Đơn hàng của bạn</h1>
+    </div>
+    <div class="wrapper">
+      <div class="delivery-info">
+        <p>Họ và tên: <span id="fullName"></span></p>
+        <p>Số điện thoại: <span id="phoneNumber"></span></p>
+        <p>Email: <span id="email"></span></p>
+        <p>Địa chỉ: <span id="address"></span></p>
+        <p>Phương thức thanh toán: <span id="paymentMethod"></span></p>
+      </div>
+      <div id="cart-product-list" class="cart-product-list">
+        <hr />
+      </div>
+    </div>
+
+    <div class="total">
+      <p class="total-title">Tổng</p>
+      <p id="total-price">0đ</p>
+    </div>
+    <div class="total discount-price">
+      <p class="discount-title">Giảm trừ khuyến mãi</p>
+      <p id="discount-price">-0đ</p>
+    </div>
+    <div class="total shipping-price">
+      <p class="shipping-title">Phí vận chuyển</p>
+      <p id="shipping-price">0đ</p>
+    </div>
+    <div class="total payment">
+      <p class="payment-title">Số tiền thanh toán</p>
+      <p id="payment-price">0đ</p>
+    </div>
+    <button>Trở về trang chủ</button>
+    <!-- End Body -->
+
+    <!-- Footer -->
+    <footer>
+      <hr />
+      <div class="footer-section1">
+        <div class="section1-block1">
+          <img src="../image/email.svg" alt="Email" />
+          <p>Đăng ký nhận tin</p>
+        </div>
+        <div class="section1-block2">
+          <input
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Nhập email của bạn:"
+          />
+          <span>Đăng ký</span>
+        </div>
+        <div class="section1-block3">
+          <img src="../image/phone.svg" alt="Phone" />
+          <p>Hotline: 0792352701</p>
+        </div>
+      </div>
+      <hr />
+      <div class="footer-section2">
+        <div class="introduce">
+          <h2>GIỚI THIỆU</h2>
+          <p>
+            Meow petshop là cửa hàng chuyên cung cấp thức ăn và phụ kiện cho thú
+            cưng tọa lạc tại TP. Vũng Tàu. Đến với Meow, khách yêu shopping tận
+            lực, Meow tư vấn tận tâm.
+          </p>
+          <img src="../image/xac-nhan-bct.png" alt="Xác nhận bộ công thương" />
+        </div>
+        <div class="policy">
+          <h2>CHÍNH SÁCH</h2>
+          <ul>
+            <li><a href="#">Liên hệ</a></li>
+            <li><a href="#">Hình thức thanh toán</a></li>
+            <li><a href="#">Điều khoản dịch vụ</a></li>
+            <li><a href="#">Chính sách vận chuyển</a></li>
+            <li><a href="#">Chính sách đổi trả</a></li>
+            <li><a href="#">Chính sách bảo mật thông tin</a></li>
+          </ul>
+        </div>
+        <div class="contact">
+          <h2>THÔNG TIN LIÊN HỆ</h2>
+          <div class="cover-contact">
+            <img src="../image/address.svg" alt="địa chỉ" />
+            <p>256 Trần Hưng Đạo, phường 11, Thành phố Vũng Tàu</p>
+          </div>
+          <div class="cover-contact">
+            <img src="../image/phone.svg" alt="SĐT" />
+            <p>0792352701</p>
+          </div>
+          <div class="cover-contact">
+            <img src="../image/email.svg" alt="Email" />
+            <p>meowpetshop2024@gmail.com</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- End Footer -->
+    <script src="../js/bill-info.js"></script>
+  </body>
+</html>

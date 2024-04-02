@@ -75,6 +75,8 @@ submitBtn.addEventListener("click", function () {
   };
   localStorage.setItem("deliveryInfo", JSON.stringify(deliveryInfo));
   alert("Cập nhật thông tin thành công!");
+  //Chuyển đến trang xem bill
+  window.location.href = "../html/bill-info.html";
 });
 
 //Lấy phương thức thanh toán
@@ -118,22 +120,32 @@ function getAddress() {
 //Lấy giá tiền ship
 function saveShipPrice() {
   var shipPrice = 0;
-  var deliveryMethods = document.getElementsByName(deliveryMethod);
+  var deliveryMethods = document.getElementsByName(deliveryMethod); // Đổi tên deliveryMethod thành "deliveryMethod"
+  // Lấy ra chỉ số của item được click
+  var selectedIndex = -1;
   for (var i = 0; i < deliveryMethods.length; i++) {
     if (deliveryMethods[i].checked) {
-      // Tìm đến phần tử block2-price từ phần tử radio button được chọn
-      var block2Price = deliveryMethods[i]
-        .closest(".block2-inner")
-        .querySelector(".block2-price");
-
-      if (block2Price) {
-        shipPrice = unformatPrice(block2Price.innerHTML);
-      }
-      break; // Thoát khỏi vòng lặp sau khi đã tìm thấy giá tiền
+      selectedIndex = i;
+      break;
     }
+  }
+  // Xác định giá vận chuyển dựa trên chỉ số của item được click
+  switch(selectedIndex) {
+    case 0:
+      shipPrice = 20000;
+      break;
+    case 1:
+      shipPrice = 31000;
+      break;
+    case 2:
+      shipPrice = 40000;
+      break;
+    default:
+      shipPrice = 0; // Nếu không click vào item nào thì giá vận chuyển là 0
   }
   return shipPrice;
 }
+
 //Kiểm tra tất cả thông tin có còn rỗng không
 function checkAllInfoFilled() {
   // Kiểm tra xem tất cả các điều kiện đã được đáp ứng hay không
