@@ -16,11 +16,11 @@ document.addEventListener("DOMContentLoaded", function () {
 function preloadData() {
   fetch("../data/country.json")
     .then((response) => response.json())
-    .then((data) => {
+    .then((cityData) => {
       // Sử dụng dữ liệu ở đây
-      console.log(data); // Kiểm tra xem dữ liệu đã được tải thành công chưa
-      // Tiếp tục với xử lý dữ liệu của bạn ở đây, ví dụ:
-      // Cập nhật biến cityData hoặc thực hiện các hàm sử dụng dữ liệu đã tải
+      console.log(cityData); // Kiểm tra xem dữ liệu đã được tải thành công chưa
+      //Lưu dữ liệu vào LocalStorage
+      localStorage.setItem("cityData", JSON.stringify(cityData));
       onLoad();
       document
         .getElementById("city")
@@ -209,6 +209,7 @@ function isAnyRadioButtonChecked(radioGroupName) {
   return false; // Nếu không có radio button nào được chọn, trả về false
 }
 function readAllCity() {
+  var cityData = JSON.parse(localStorage.getItem("cityData"));
   var cities = []; // Khởi tạo mảng để lưu trữ tên thành phố
 
   // Sử dụng vòng lặp để lấy tên thành phố từ mỗi thành phố trong cityData
@@ -219,6 +220,7 @@ function readAllCity() {
   return cities; // Trả về mảng chứa tất cả các tên thành phố
 }
 function readAllDistrict(cityName) {
+  var cityData = JSON.parse(localStorage.getItem("cityData"));
   var districts = []; // Khởi tạo mảng để lưu trữ tên quận
 
   // Tìm thành phố theo tên
@@ -237,6 +239,7 @@ function readAllDistrict(cityName) {
   return districts; // Trả về mảng chứa tất cả các tên quận của thành phố
 }
 function readAllWards(cityName, districtName) {
+  var cityData = JSON.parse(localStorage.getItem("cityData"));
   var wards = []; // Khởi tạo mảng để lưu trữ tên các phường
 
   // Tìm thành phố theo tên
