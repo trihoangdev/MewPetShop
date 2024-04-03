@@ -59,18 +59,19 @@ function showProductsInCart() {
   document.getElementById("cart-product-list").innerHTML = productHTML;
 }
 function formatPrice(price) {
-  // Chuyển số thành chuỗi và thêm dấu chấm phẩy sau mỗi 3 chữ số từ cuối lên
-  let formattedPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-  // Thêm ký tự 'đ' vào cuối chuỗi
-  formattedPrice += "đ";
+  // Chuyển số thành chuỗi với định dạng tiền tệ
+  let formattedPrice = Number(price).toLocaleString("vi-VN", {
+    style: "currency",
+    currency: "VND",
+  });
   return formattedPrice;
 }
 function unformatPrice(formattedPrice) {
-  // Xóa ký tự 'đ' cuối chuỗi
-  let priceWithoutSymbol = formattedPrice.replace(/đ/g, "");
-  // Xóa tất cả các dấu chấm phẩy trong chuỗi
-  let priceWithoutCommas = priceWithoutSymbol.replace(/\./g, "");
-  // Chuyển chuỗi thành số
+  // Loại bỏ ký tự '₫' cuối chuỗi
+  let priceWithoutSymbol = formattedPrice.replace("₫", "");
+  // Loại bỏ tất cả các dấu chấm và dấu phẩy trong chuỗi
+  let priceWithoutCommas = priceWithoutSymbol.replace(/[,.]/g, "");
+  // Chuyển chuỗi thành một số
   let unformattedPrice = parseFloat(priceWithoutCommas);
   return unformattedPrice;
 }
@@ -168,8 +169,10 @@ function calculateDiscountHandler() {
   );
   //sự kiện giảm giá cho discount1
   if (activeDiscount1) {
-    if (totalPricetxt > 1000000)
+    if (totalPricetxt > 1000000) {
+      console.log(totalPricetxt * 0.15);
       discounttxt.innerHTML = "-" + formatPrice(totalPricetxt * 0.15);
+    }
     return;
   }
   //sự kiện giảm giá cho discount2
@@ -187,6 +190,7 @@ function calculatePaymentPrice() {
   var totalPrice = unformatPrice(
     document.getElementById("total-price").textContent
   );
+  console.log(totalPrice);
   var totalDiscount = unformatPrice(
     document.getElementById("discount-price").textContent
   );
@@ -199,18 +203,14 @@ btnPayment.addEventListener("click", function () {
     return;
   }
   //Lưu giá tiền chưa giảm
-  var paymentNotDiscount = formatPrice(
-    document.getElementById("total-price").textContent
-  );
-  localStorage.setItem("paymentNotDiscount", unformatPrice(paymentNotDiscount));
+  var paymentNotDiscount = document.getElementById("total-price").textContent;
+  localStorage.setItem("paymentNotDiscount", paymentNotDiscount);
   //Lưu giá tiền
   var paymentPrice = document.getElementById("payment-price").textContent;
   localStorage.setItem("paymentPrice", unformatPrice(paymentPrice));
   //Lưu giảm giá
-  var discountPrice = formatPrice(
-    document.getElementById("discount-price").textContent
-  );
-  localStorage.setItem("discountPrice", unformatPrice(discountPrice));
+  var discountPrice = document.getElementById("discount-price").textContent;
+  localStorage.setItem("discountPrice", discountPrice);
   //Chuyển trang
   window.location.href = "../html/delivery-info.html";
 });

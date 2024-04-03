@@ -307,18 +307,16 @@ function loadQuantityInCart() {
   quantityInCart.innerHTML = currentQuantity;
 }
 function formatPrice(price) {
-  // Chuyển số thành chuỗi và thêm dấu chấm phẩy sau mỗi 3 chữ số từ cuối lên
-  let formattedPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-  // Thêm ký tự 'đ' vào cuối chuỗi
-  formattedPrice += "đ";
-  return formattedPrice;
+   // Chuyển số thành chuỗi với định dạng tiền tệ
+   let formattedPrice = Number(price).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+   return formattedPrice;
 }
 function unformatPrice(formattedPrice) {
-  // Xóa ký tự 'đ' cuối chuỗi
-  let priceWithoutSymbol = formattedPrice.replace(/đ/g, "");
-  // Xóa tất cả các dấu chấm phẩy trong chuỗi
-  let priceWithoutCommas = priceWithoutSymbol.replace(/\./g, "");
-  // Chuyển chuỗi thành số
+  // Loại bỏ ký tự '₫' cuối chuỗi
+  let priceWithoutSymbol = formattedPrice.replace('₫', '');
+  // Loại bỏ tất cả các dấu chấm và dấu phẩy trong chuỗi
+  let priceWithoutCommas = priceWithoutSymbol.replace(/[,.]/g, '');
+  // Chuyển chuỗi thành một số
   let unformattedPrice = parseFloat(priceWithoutCommas);
   return unformattedPrice;
 }

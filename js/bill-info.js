@@ -56,46 +56,42 @@ function showProductsInCart() {
   document.getElementById("cart-product-list").innerHTML = productHTML;
 }
 function formatPrice(price) {
-  // Nếu giá trị là 0 hoặc ít hơn 3 chữ số, trả về giá trị 0đ
-  if (price === 0 || Math.abs(price) < 1000) {
-    return price.toString() + "đ";
-  }
-
-  // Chuyển số thành chuỗi và thêm dấu chấm phẩy sau mỗi 3 chữ số từ cuối lên
-  let formattedPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-  // Thêm ký tự 'đ' vào cuối chuỗi
-  formattedPrice += "đ";
+  // Chuyển số thành chuỗi với định dạng tiền tệ
+  let formattedPrice = Number(price).toLocaleString("vi-VN", {
+    style: "currency",
+    currency: "VND",
+  });
   return formattedPrice;
 }
 function unformatPrice(formattedPrice) {
-  // Xóa ký tự 'đ' cuối chuỗi
-  let priceWithoutSymbol = formattedPrice.replace(/đ/g, "");
-  // Xóa tất cả các dấu chấm phẩy trong chuỗi
-  let priceWithoutCommas = priceWithoutSymbol.replace(/\./g, "");
-  // Chuyển chuỗi thành số
+  // Loại bỏ ký tự '₫' cuối chuỗi
+  let priceWithoutSymbol = formattedPrice.replace("₫", "");
+  // Loại bỏ tất cả các dấu chấm và dấu phẩy trong chuỗi
+  let priceWithoutCommas = priceWithoutSymbol.replace(/[,.]/g, "");
+  // Chuyển chuỗi thành một số
   let unformattedPrice = parseFloat(priceWithoutCommas);
   return unformattedPrice;
 }
 function calculatePaymentPrice() {
   var totalPrice = unformatPrice(
-    document.getElementById("total-price").textContent
+    document.getElementById("total-price").innerHTML
   );
   var totalDiscount = unformatPrice(
-    document.getElementById("discount-price").textContent
+    document.getElementById("discount-price").innerHTML
   );
   var shipPrice = unformatPrice(
-    document.getElementById("shipping-price").textContent
+    document.getElementById("shipping-price").innerHTML
   );
   var payment = totalPrice + totalDiscount + shipPrice;
   document.getElementById("payment-price").innerHTML = formatPrice(payment);
 }
 function showPaymentNotDiscount() {
   var totalPriceLS = localStorage.getItem("paymentNotDiscount");
-  totalPrice.textContent = formatPrice(totalPriceLS);
+  totalPrice.textContent = totalPriceLS;
 }
 function showDiscountPrice() {
   var totalDiscountLS = localStorage.getItem("discountPrice");
-  discountPrice.textContent = formatPrice(totalDiscountLS);
+  discountPrice.textContent = totalDiscountLS;
 }
 function showShippingPrice() {
   var deliveryInfo = JSON.parse(localStorage.getItem("deliveryInfo"));

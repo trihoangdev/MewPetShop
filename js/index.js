@@ -26,10 +26,8 @@ function onLoad() {
 }
 
 function formatPrice(price) {
-  // Chuyển số thành chuỗi và thêm dấu chấm phẩy sau mỗi 3 chữ số từ cuối lên
-  let formattedPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-  // Thêm ký tự 'đ' vào cuối chuỗi
-  formattedPrice += "đ";
+  // Chuyển số thành chuỗi với định dạng tiền tệ
+  let formattedPrice = Number(price).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
   return formattedPrice;
 }
 
