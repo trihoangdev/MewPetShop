@@ -1,6 +1,6 @@
 //Lưu local storage
 // import productData from "../data/product.json" with { type: "json" };
-//localStorage.setItem('products', JSON.stringify(productData));
+// localStorage.setItem('products', JSON.stringify(productData));
 
 document.addEventListener("DOMContentLoaded", function () {
   onLoad();

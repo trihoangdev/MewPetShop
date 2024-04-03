@@ -1,21 +1,20 @@
 //Lưu local storage
-// import productListData from "../data/product-list.json" with { type: "json" };
-// localStorage.setItem('productList', JSON.stringify(productListData));
-
+import productListData from "../data/product-list.json" with { type: "json" };
+localStorage.setItem('productList', JSON.stringify(productListData));
 document.addEventListener("DOMContentLoaded", function () {
   onLoad();
   loadQuantityInCart();
+  //lấy tham chiếu đến các thẻ để đẩy data
+  var products = document.querySelectorAll(".product-item");
+  openProductDetail(products);
 });
 //Lấy mã trang đang có trong localStorage
 var idPage = JSON.parse(localStorage.getItem("idPageProduct"));
-
 function getCategory() {
   return idPage;
 }
 //Lấy dữ liệu từ local storage
 var productObj = JSON.parse(localStorage.getItem("productList"));
-//lấy tham chiếu đến các thẻ để đẩy data
-var products = document.querySelectorAll(".product-item");
 
 function onLoad() {
   var productHTML = "";
@@ -77,4 +76,27 @@ function loadQuantityInCart() {
     quantityInCart = length;
   }
   document.getElementById("quantity-in-cart").innerHTML = quantityInCart;
+}
+function openProductDetail(products) {
+  //set sự kiện chuyển trang cho các thẻ div
+  products.forEach((item) => {
+    item.addEventListener("click", function () {
+      //Lưu thông tin vào local storage để truy xuất
+      //lấy title và thẻ div đang được dùng
+      var divId = item.getAttribute("id");
+      console.log(divId);
+      var id = divId.match(/\d+$/)[0]; //Lấy id của thẻ đang dùng
+      console.log(id);
+      //Tìm kiếm
+      for (var i = 0; i < products.length; i++) {
+        if (productObj[i].id == id) {
+          localStorage.setItem("currentProduct", JSON.stringify(productObj[i]));
+          break;
+        }
+      }
+
+      //Chuyển trang
+      window.location.href = "../html/product-detail.html";
+    });
+  });
 }
