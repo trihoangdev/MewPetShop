@@ -1,5 +1,3 @@
-import cityData from "../data/country.json" with { type: "json" };
-
 //Lấy tham chiếu đến các thẻ
 var citySelect = document.getElementById("city");
 var quantityInCart = document.getElementById("quantity-in-cart");
@@ -13,12 +11,29 @@ var deliveryMethod = "delivery-method"; // Tên của nhóm radio button
 var deliveryWay = "delivery-way"; // Tên của nhóm radio button
 //Load DOM
 document.addEventListener("DOMContentLoaded", function () {
-  onLoad();
-  document.getElementById("city").addEventListener("change", changeDistrict);
-  document.getElementById("district").addEventListener("change", changeWard);
-  loadQuantityInCart();
+  preloadData();
 });
-
+function preloadData() {
+  fetch("../data/country.json")
+    .then((response) => response.json())
+    .then((data) => {
+      // Sử dụng dữ liệu ở đây
+      console.log(data); // Kiểm tra xem dữ liệu đã được tải thành công chưa
+      // Tiếp tục với xử lý dữ liệu của bạn ở đây, ví dụ:
+      // Cập nhật biến cityData hoặc thực hiện các hàm sử dụng dữ liệu đã tải
+      onLoad();
+      document
+        .getElementById("city")
+        .addEventListener("change", changeDistrict);
+      document
+        .getElementById("district")
+        .addEventListener("change", changeWard);
+      loadQuantityInCart();
+    })
+    .catch((error) => {
+      console.error("Error loading JSON file:", error);
+    });
+}
 //Các sự kiện
 //Biến dùng kiểm tra all thông tin hợp lệ
 var checkAll = true;
@@ -130,7 +145,7 @@ function saveShipPrice() {
     }
   }
   // Xác định giá vận chuyển dựa trên chỉ số của item được click
-  switch(selectedIndex) {
+  switch (selectedIndex) {
     case 0:
       shipPrice = 20000;
       break;
@@ -167,7 +182,10 @@ function checkAllInfoFilled() {
     }
 
     // Kiểm tra xem phương thức giao hàng đã được chọn hay không
-    if (!document.getElementsByName(deliveryWay)[0].checked || isAnyRadioButtonChecked(deliveryMethod)) {
+    if (
+      !document.getElementsByName(deliveryWay)[0].checked ||
+      isAnyRadioButtonChecked(deliveryMethod)
+    ) {
       checkAll = true;
     } else {
       checkAll = false;
@@ -177,7 +195,6 @@ function checkAllInfoFilled() {
     checkAll = false;
   }
 }
-
 
 function isAnyRadioButtonChecked(radioGroupName) {
   var radioButtons = document.getElementsByName(radioGroupName);
@@ -302,15 +319,18 @@ function loadQuantityInCart() {
   quantityInCart.innerHTML = currentQuantity;
 }
 function formatPrice(price) {
-   // Chuyển số thành chuỗi với định dạng tiền tệ
-   let formattedPrice = Number(price).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
-   return formattedPrice;
+  // Chuyển số thành chuỗi với định dạng tiền tệ
+  let formattedPrice = Number(price).toLocaleString("vi-VN", {
+    style: "currency",
+    currency: "VND",
+  });
+  return formattedPrice;
 }
 function unformatPrice(formattedPrice) {
   // Loại bỏ ký tự '₫' cuối chuỗi
-  let priceWithoutSymbol = formattedPrice.replace('₫', '');
+  let priceWithoutSymbol = formattedPrice.replace("₫", "");
   // Loại bỏ tất cả các dấu chấm và dấu phẩy trong chuỗi
-  let priceWithoutCommas = priceWithoutSymbol.replace(/[,.]/g, '');
+  let priceWithoutCommas = priceWithoutSymbol.replace(/[,.]/g, "");
   // Chuyển chuỗi thành một số
   let unformattedPrice = parseFloat(priceWithoutCommas);
   return unformattedPrice;

@@ -1,22 +1,32 @@
-//Lưu local storage
-import productListData from "../data/product-list.json" with { type: "json" };
-localStorage.setItem('productList', JSON.stringify(productListData));
+// Tiếp tục với các hành động sau khi lưu dữ liệu vào localStorage
 document.addEventListener("DOMContentLoaded", function () {
-  onLoad();
-  loadQuantityInCart();
-  //lấy tham chiếu đến các thẻ để đẩy data
-  var products = document.querySelectorAll(".product-item");
-  openProductDetail(products);
+  preloadData();
 });
+function preloadData() {
+  //Lưu local storage
+  // Lưu dữ liệu từ tệp JSON vào localStorage
+  fetch("../data/product-list.json")
+    .then((response) => response.json())
+    .then((productListData) => {
+      localStorage.setItem("productList", JSON.stringify(productListData));
+      onLoad();
+      loadQuantityInCart();
+      var products = document.querySelectorAll(".product-item");
+      openProductDetail(products);
+    })
+    .catch((error) => {
+      console.error("Error loading JSON file:", error);
+    });
+}
 //Lấy mã trang đang có trong localStorage
 var idPage = JSON.parse(localStorage.getItem("idPageProduct"));
 function getCategory() {
   return idPage;
 }
-//Lấy dữ liệu từ local storage
-var productObj = JSON.parse(localStorage.getItem("productList"));
 
 function onLoad() {
+  //Lấy dữ liệu từ local storage
+  var productObj = JSON.parse(localStorage.getItem("productList"));
   var productHTML = "";
   //Ghi dữ liệu từ localStorage vào các biến
   for (var i = 0; i < productObj.length; i++) {
@@ -78,7 +88,9 @@ function loadQuantityInCart() {
   document.getElementById("quantity-in-cart").innerHTML = quantityInCart;
 }
 function openProductDetail(products) {
-  console.log(products.length);
+  //Lấy dữ liệu từ local storage
+  var productObj = JSON.parse(localStorage.getItem("productList"));
+  console.log(productObj);
   //set sự kiện chuyển trang cho các thẻ div
   products.forEach((item) => {
     item.addEventListener("click", function () {
