@@ -3,7 +3,7 @@ var productTitle = document.getElementById("product-title");
 var img = document.getElementById("image-src");
 var price = document.getElementById("price");
 var quantityInCart = document.getElementById("quantity-in-cart");
-
+var description = document.getElementById("description");
 // Lấy thông tin của sản phẩm từ localStorage
 const currentProduct = JSON.parse(localStorage.getItem("currentProduct"));
 document.addEventListener("DOMContentLoaded", function () {
@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
   img.src = "../" + currentProduct.src;
   price.innerHTML = formatPrice(currentProduct.price);
   quantityInCart.innerHTML = currentQuantity;
+  description.innerHTML = currentProduct.description;
 });
 
 function formatPrice(price) {
