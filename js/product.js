@@ -78,6 +78,7 @@ function loadQuantityInCart() {
   document.getElementById("quantity-in-cart").innerHTML = quantityInCart;
 }
 function openProductDetail(products) {
+  console.log(products.length);
   //set sự kiện chuyển trang cho các thẻ div
   products.forEach((item) => {
     item.addEventListener("click", function () {
@@ -88,7 +89,7 @@ function openProductDetail(products) {
       var id = divId.match(/\d+$/)[0]; //Lấy id của thẻ đang dùng
       console.log(id);
       //Tìm kiếm
-      for (var i = 0; i < products.length; i++) {
+      for (var i = 0; i < productObj.length; i++) {
         if (productObj[i].id == id) {
           localStorage.setItem("currentProduct", JSON.stringify(productObj[i]));
           break;
