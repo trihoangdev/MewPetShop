@@ -155,8 +155,7 @@ function checkAllInfoFilled() {
     phoneNumber.value != "" &&
     isAnyRadioButtonChecked(deliveryWay)
   ) {
-    //Nếu giao hàng tại nhà thì check xem nếu trong phương thức giao hàng chưa check thì trả về false
-    //Và kiểm tra xem các ô select đã được chọn chưa
+    //Nếu giao hàng tại nhà thì không cần kiểm tra phương thức giao hàng
     if (document.getElementsByName(deliveryWay)[0].checked) {
       var selects = document.querySelectorAll("select"); // Lấy tất cả các thẻ select trong trang
       for (var i = 0; i < selects.length; i++) {
@@ -165,15 +164,10 @@ function checkAllInfoFilled() {
           return; // Ngay sau khi tìm thấy ô select chưa được chọn, thoát khỏi hàm
         }
       }
-      // Nếu không có ô select nào chưa được chọn, đặt checkAll là true
-      checkAll = true;
-    } else {
-      // Nếu không phải giao hàng tại nhà, không cần kiểm tra ô select, đặt checkAll là true
-      checkAll = true;
     }
 
     // Kiểm tra xem phương thức giao hàng đã được chọn hay không
-    if (isAnyRadioButtonChecked(deliveryMethod)) {
+    if (!document.getElementsByName(deliveryWay)[0].checked || isAnyRadioButtonChecked(deliveryMethod)) {
       checkAll = true;
     } else {
       checkAll = false;
@@ -183,6 +177,7 @@ function checkAllInfoFilled() {
     checkAll = false;
   }
 }
+
 
 function isAnyRadioButtonChecked(radioGroupName) {
   var radioButtons = document.getElementsByName(radioGroupName);
