@@ -5,6 +5,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   onLoad();
   loadQuantityInCart();
+  saveTitleProduct();
 });
 //Lấy dữ liệu từ local storage
 var productObj = JSON.parse(localStorage.getItem("products"));
@@ -97,4 +98,18 @@ function loadQuantityInCart() {
     quantityInCart = length;
   }
   document.getElementById("quantity-in-cart").innerHTML = quantityInCart;
+}
+var linkToProduct = document.querySelectorAll(
+  ".section1 .section1-product ul li a"
+);
+console.log(linkToProduct);
+function saveTitleProduct() {
+  for (var i = 0; i < linkToProduct.length; i++) {
+    linkToProduct[i].addEventListener("click", function () {
+      // Lưu id của mỗi thẻ vào localStorage
+      var id = this.id; // Sử dụng "this" để truy cập vào thẻ đang được click
+      console.log(id);
+      localStorage.setItem("idPageProduct", JSON.stringify(id));
+    });
+  }
 }
