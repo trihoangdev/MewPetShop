@@ -74,7 +74,9 @@ hr {
 }
 .total .total-title,
 .total .discount-title,
-.payment-title {
+.payment-title,
+.discount-price,
+.discount-title {
   font-size: 17px;
 }
 .total #total-price,
