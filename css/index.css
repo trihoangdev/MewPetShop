@@ -175,16 +175,16 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  border: 1px solid #000;
   padding: 12px;
   border-radius: 10px;
-  box-shadow: var(--box-shadow);
+  box-shadow: 0px 5px 20px rgba(17, 16, 16, 0.16);
   align-items: center;
 }
 .section2 .section2-discount .section2-discount-item:hover {
   cursor: pointer;
   transition: transform 0.3s ease;
   transform: scale(1.05);
+  background-color: var(--color-two);
 }
 .section2 .section2-discount .section2-discount-item:nth-child(2) {
   margin-left: 40px;
@@ -263,7 +263,8 @@
   width: 270px;
   height: 350px;
   margin-right: 30px;
-  border: 1px solid #000;
+  box-shadow: 0px 5px 20px rgba(17, 16, 16, 0.16);
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -272,6 +273,7 @@
   overflow: hidden;
   margin-top: 30px;
 }
+
 .product-list .product-item img {
   width: 250px;
 }
