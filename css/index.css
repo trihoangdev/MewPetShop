@@ -275,6 +275,7 @@
 }
 .product-list .product-item:hover {
   cursor: pointer;
+  background-color: var(--color-two);
 }
 .product-list .product-item img {
   width: 250px;
