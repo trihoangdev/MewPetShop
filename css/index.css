@@ -273,7 +273,9 @@
   overflow: hidden;
   margin-top: 30px;
 }
-
+.product-list .product-item:hover {
+  cursor: pointer;
+}
 .product-list .product-item img {
   width: 250px;
 }
