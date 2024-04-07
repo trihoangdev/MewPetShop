@@ -28,12 +28,12 @@ function onLoad() {
   //Lấy dữ liệu từ local storage
   //Filter hoặc lấy sản phẩm có tên gì đó
   var productObj = "";
+  var productHTML = "";
   if (JSON.parse(localStorage.getItem("idPageProduct")) == "productFilter") {
     productObj = JSON.parse(localStorage.getItem("productsFiltered"));
     console.log(productObj);
     //Ghi dữ liệu từ localStorage vào các biến
-    var productHTML = "";
-
+    console.log(productHTML);
     for (var i = 0; i < productObj.length; i++) {
       productHTML += `<div class="product-item" id="product-item${
         productObj[i].id
@@ -124,7 +124,6 @@ function openProductDetail(products) {
   } else {
     productObj = JSON.parse(localStorage.getItem("productList"));
   }
-  console.log(productObj);
   //set sự kiện chuyển trang cho các thẻ div
   products.forEach((item) => {
     item.addEventListener("click", function () {
