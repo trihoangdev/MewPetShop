@@ -47,6 +47,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 5px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.16);
+}
+.header .header-top .header-section-one i:hover {
+  cursor: pointer;
+  background-color: #753e3e;
 }
 .header .header-top .header-section-two {
   background-color: var(--color-one);
