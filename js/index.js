@@ -27,7 +27,7 @@ function preloadProductData() {
     });
 }
 //Lấy dữ liệu từ local storage
-// var productObj = JSON.parse(localStorage.getItem("product-list"));
+var productObj = JSON.parse(localStorage.getItem("product-list"));
 //lấy tham chiếu đến các thẻ để đẩy data
 var products = document.querySelectorAll(".product-item");
 
