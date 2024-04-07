@@ -18,6 +18,7 @@ function preloadProductData() {
       // Lưu dữ liệu vào localStorage
       localStorage.setItem("product-list", JSON.stringify(data));
       onLoad();
+      linkToProductInfo();
       //Lấy dữ liệu từ local storage
       loadQuantityInCart();
       saveTitleProduct();
@@ -26,15 +27,13 @@ function preloadProductData() {
       console.error("Error preloading product data:", error);
     });
 }
-//Lấy dữ liệu từ local storage
-var productObj = JSON.parse(localStorage.getItem("product-list"));
+
 //lấy tham chiếu đến các thẻ để đẩy data
 var products = document.querySelectorAll(".product-item");
-
+console.log(products);
 function onLoad() {
   //Lấy dữ liệu từ local storage
   var productObj = JSON.parse(localStorage.getItem("product-list"));
-  console.log(productObj);
   //Ghi dữ liệu từ localStorage vào các biến
   for (var i = 0; i < products.length; i++) {
     products[i].querySelector(".product-item-tittle").innerHTML =
@@ -54,61 +53,63 @@ function formatPrice(price) {
   });
   return formattedPrice;
 }
+function linkToProductInfo() {
+  //set sự kiện chuyển trang cho các thẻ div
+  products.forEach((item) => {
+    //Lấy dữ liệu từ local storage
+    var productObj = JSON.parse(localStorage.getItem("product-list"));
+    console.log(productObj);
+    item.addEventListener("click", function () {
+      //Lưu thông tin vào local storage để truy xuất
+      //lấy title và thẻ div đang được dùng
+      var divId = item.getAttribute("id");
+      var titleElement = item.querySelector(".product-item-tittle").textContent;
+      //Tìm kiếm
+      var type = divId.split("-"); //lấy kiểu
+      switch (type[1]) {
+        case "sale": {
+          //tìm trong productSalesObj
+          for (var i = 0; i < productObj.length; i++)
+            if (productObj[i].title == titleElement) {
+              localStorage.setItem(
+                "currentProduct",
+                JSON.stringify(productObj[i])
+              );
+              break;
+            }
+          break;
+        }
+        case "new": {
+          //tìm trong productNewsObj
+          for (var i = 0; i < productObj.length; i++)
+            if (productObj[i].title == titleElement) {
+              localStorage.setItem(
+                "currentProduct",
+                JSON.stringify(productObj[i])
+              );
+              break;
+            }
+          break;
+        }
+        case "restock": {
+          //tìm trong productRestocksObj
+          for (var i = 0; i < productObj.length; i++)
+            if (productObj[i].title == titleElement) {
+              localStorage.setItem(
+                "currentProduct",
+                JSON.stringify(productObj[i])
+              );
+              break;
+            }
+          break;
+        }
+      }
 
-//set sự kiện chuyển trang cho các thẻ div
-products.forEach((item) => {
-  //Lấy dữ liệu từ local storage
-  var productObj = JSON.parse(localStorage.getItem("product-list"));
-  item.addEventListener("click", function () {
-    //Lưu thông tin vào local storage để truy xuất
-    //lấy title và thẻ div đang được dùng
-    var divId = item.getAttribute("id");
-    var titleElement = item.querySelector(".product-item-tittle").textContent;
-    //Tìm kiếm
-    var type = divId.split("-"); //lấy kiểu
-    switch (type[1]) {
-      case "sale": {
-        //tìm trong productSalesObj
-        for (var i = 0; i < productObj.length; i++)
-          if (productObj[i].title == titleElement) {
-            localStorage.setItem(
-              "currentProduct",
-              JSON.stringify(productObj[i])
-            );
-            break;
-          }
-        break;
-      }
-      case "new": {
-        //tìm trong productNewsObj
-        for (var i = 0; i < productObj.length; i++)
-          if (productObj[i].title == titleElement) {
-            localStorage.setItem(
-              "currentProduct",
-              JSON.stringify(productObj[i])
-            );
-            break;
-          }
-        break;
-      }
-      case "restock": {
-        //tìm trong productRestocksObj
-        for (var i = 0; i < productObj.length; i++)
-          if (productObj[i].title == titleElement) {
-            localStorage.setItem(
-              "currentProduct",
-              JSON.stringify(productObj[i])
-            );
-            break;
-          }
-        break;
-      }
-    }
-
-    //Chuyển trang
-    window.location.href = "../html/product-detail.html";
+      //Chuyển trang
+      window.location.href = "../html/product-detail.html";
+    });
   });
-});
+}
 
 var quantityInCart = 0;
 function loadQuantityInCart() {
