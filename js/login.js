@@ -1,3 +1,5 @@
+const btnLogin = document.getElementById("btn-login");
+
 //Chức năng đăng nhập
 //Sự kiện đăng nhập tài khoản
 btnLogin.addEventListener("click", function () {
@@ -31,7 +33,6 @@ const accountFieldLogin = document.getElementById("account-field-login");
 const errorAccLogin = document.getElementById("error-acc-login");
 const errorPassLogin = document.getElementById("error-pass-login");
 const errorAccRegister = document.getElementById("error-acc-register");
-const btnLogin = document.getElementById("btn-login");
 
 //Sự kiện kiểm tra mật khẩu có đúng định dạng không, nếu sai báo lỗi
 passwordFieldLogin.addEventListener("change", function () {
