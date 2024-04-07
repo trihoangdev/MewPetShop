@@ -26,18 +26,39 @@ function getCategory() {
 
 function onLoad() {
   //Lấy dữ liệu từ local storage
-  var productObj = JSON.parse(localStorage.getItem("productList"));
-  var productHTML = "";
-  //Ghi dữ liệu từ localStorage vào các biến
-  for (var i = 0; i < productObj.length; i++) {
-    if (productObj[i].category == getCategory()) {
-      productHTML += `<div class="product-item" id="product-item${i}">
+  //Filter hoặc lấy sản phẩm có tên gì đó
+  var productObj = "";
+  if (JSON.parse(localStorage.getItem("idPageProduct")) == "productFilter") {
+    productObj = JSON.parse(localStorage.getItem("productsFiltered"));
+    console.log(productObj);
+    //Ghi dữ liệu từ localStorage vào các biến
+    var productHTML = "";
+
+    for (var i = 0; i < productObj.length; i++) {
+      productHTML += `<div class="product-item" id="product-item${
+        productObj[i].id
+      }">
       <img src="../${productObj[i].src}" alt="Sản phẩm" />
       <p class="product-item-tittle">${productObj[i].title}</p>
       <p class="product-item-price">${formatPrice(productObj[i].price)}</p>
     </div>`;
     }
+  } else {
+    productObj = JSON.parse(localStorage.getItem("productList"));
+    //Ghi dữ liệu từ localStorage vào các biến
+    for (var i = 0; i < productObj.length; i++) {
+      if (productObj[i].category == getCategory()) {
+        productHTML += `<div class="product-item" id="product-item${
+          productObj[i].id
+        }">
+      <img src="../${productObj[i].src}" alt="Sản phẩm" />
+      <p class="product-item-tittle">${productObj[i].title}</p>
+      <p class="product-item-price">${formatPrice(productObj[i].price)}</p>
+    </div>`;
+      }
+    }
   }
+
   document.getElementById("product-list").innerHTML = productHTML;
   //Set tiêu đề trang
   switch (idPage) {
@@ -65,6 +86,13 @@ function onLoad() {
       document.querySelector("h1").innerHTML = "Ổ đệm, giường";
       break;
     }
+    case "productFilter": {
+      document.querySelector("h1").innerHTML =
+        'Sản phẩm có chứa "' +
+        JSON.parse(localStorage.getItem("idPageProductTitle")) +
+        '"';
+      break;
+    }
   }
 }
 function formatPrice(price) {
@@ -89,7 +117,13 @@ function loadQuantityInCart() {
 }
 function openProductDetail(products) {
   //Lấy dữ liệu từ local storage
-  var productObj = JSON.parse(localStorage.getItem("productList"));
+  //Filter hoặc lấy sản phẩm có tên gì đó
+  var productObj = "";
+  if (JSON.parse(localStorage.getItem("idPageProduct")) == "productFilter") {
+    productObj = JSON.parse(localStorage.getItem("productsFiltered"));
+  } else {
+    productObj = JSON.parse(localStorage.getItem("productList"));
+  }
   console.log(productObj);
   //set sự kiện chuyển trang cho các thẻ div
   products.forEach((item) => {
@@ -103,6 +137,7 @@ function openProductDetail(products) {
       //Tìm kiếm
       for (var i = 0; i < productObj.length; i++) {
         if (productObj[i].id == id) {
+          console.log(productObj[i].id);
           localStorage.setItem("currentProduct", JSON.stringify(productObj[i]));
           break;
         }
