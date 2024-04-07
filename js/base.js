@@ -8,19 +8,11 @@ findBtn.addEventListener("click", function () {
   //Lấy danh sách sản phẩm có chứa từ trong nội dung của productTitle
   var productsFiltered = [];
   //Lấy danh sách sản phẩm từ localStorage
-  var products1 = JSON.parse(localStorage.getItem("productList"));
-  var products2 = JSON.parse(localStorage.getItem("product-list"));
+  var products = JSON.parse(localStorage.getItem("products"));
 
-  // Duyệt qua mảng products1
-  products1.forEach(function (item) {
-    if (item.title.includes(productTitle)) {
-      productsFiltered.push(item);
-    }
-  });
-
-  // Duyệt qua mảng products2
-  products2.forEach(function (item) {
-    if (item.title.includes(productTitle)) {
+  // Duyệt qua mảng products
+  products.forEach(function (item) {
+    if (item.title.toLowerCase().includes(productTitle.toLowerCase())) {
       productsFiltered.push(item);
     }
   });
