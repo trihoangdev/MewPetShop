@@ -36,7 +36,7 @@ function showProductsInCart() {
     <img src="../${productInCart[i].src}" alt="" />
     <div class="content">
       <h2 class="title">${productInCart[i].title}</h2>
-      <p class="price">${formatPrice(productInCart[i].price)}</p>
+      <p class="price">Giá: ${formatPrice(productInCart[i].price)}</p>
       <div class="quantity-box">
         <i class="fa-solid fa-chevron-down" id="btn-down" onclick = 'down(${i},productInCart[${i}])'></i>
         <input
@@ -48,6 +48,9 @@ function showProductsInCart() {
         />
         <i class="fa-solid fa-chevron-up" id="btn-up" onclick ='up(${i},productInCart[${i}])' ></i>
       </div>
+      <p class="price" id="item-price${i}">Thành tiền: ${formatPrice(
+      productInCart[i].price * productInCart[i].quantity
+    )}</p>
     </div>
     <img src="../image/x.svg" alt="" class="delete-item" onclick='removeItem(${
       productInCart[i].id
@@ -85,7 +88,9 @@ function up(i, product) {
   var quantityInt = parseInt(quantity.value);
   quantity.value = ++quantityInt;
   quantity.style.backgroundColor = "white";
+
   updateQuantityToLocalStorage(quantityInt, product);
+  updateItemPrice(i, product);
   calculateDiscountHandler();
   calculatePaymentPrice();
 }
@@ -102,6 +107,7 @@ function down(i, product) {
     quantity.style.backgroundColor = "#E26F70";
   }
   updateQuantityToLocalStorage(quantityInt, product);
+  updateItemPrice(i, product);
   autoChangeTotalPrice();
   calculateDiscountHandler();
   calculatePaymentPrice();
@@ -235,4 +241,10 @@ function removeItem(idToRemove) {
   calculateTotalPrice();
   calculateDiscountHandler();
   calculatePaymentPrice();
+}
+function updateItemPrice(i, product) {
+  // Lấy id của itemPrice
+  var id = "item-price" + i;
+  var itemPrice = formatPrice(product.price * product.quantity);
+  document.getElementById(id).innerHTML = "Thành tiền: " + itemPrice;
 }
