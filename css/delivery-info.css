@@ -14,7 +14,7 @@ a:hover {
 .wrapper {
   display: flex;
   flex-direction: column;
-  max-width: 1000px;
+  max-width: 1200px;
   margin-left: 90px;
 }
 
@@ -175,4 +175,78 @@ a:hover {
 
 .wrapper .section2 button:hover {
   background-color: #f4d4c7;
+}
+
+.wrapper-content {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+.content-1 {
+  width: 70%;
+}
+.content-2 {
+  width: 30%;
+  max-width: 1200px;
+  align-items: center;
+  margin-left: 50px;
+  display: flex;
+  flex-direction: row;
+}
+.content-2 .cart-product-list {
+  width: 100%;
+}
+hr {
+  margin-top: 10px;
+}
+.content-2 .item {
+  display: flex;
+  position: relative;
+}
+.content-2 .item img {
+  width: 150px;
+}
+.content-2 .item .content {
+  margin-left: 20px;
+}
+.content-2 .item .content h2 {
+  font-size: 16.5px;
+  padding: 0;
+  margin: 0;
+}
+.content-2 .item .content p {
+  font-size: 14px;
+  margin-top: 10px;
+}
+.content-2 .item .content .quantity-box {
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+.content-2 .item .content .quantity-box i {
+  font-size: 15px;
+  padding: 5px;
+  border-radius: 2px;
+}
+.content-2 .item .content .quantity-box i:hover {
+  background-color: #f0efef;
+}
+.content-2 .item .content .quantity-box input {
+  font-size: 14.5px;
+  padding: 2px;
+  color: var(--color-text);
+  width: 60px;
+  text-align: center;
+}
+.content-2 .item .delete-item {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  width: 25px;
+  padding: 5px;
+}
+.content-2 .item .delete-item:hover {
+  background-color: #f0efef;
+}
+.content-2 .item hr {
+  display: block;
 }

@@ -61,140 +61,186 @@
         </div>
         <!-- end Block header wrapper -->
 
-        <!-- Thông tin giao hàng -->
-        <div class="block1">
-          <h2>Thông tin giao hàng</h2>
-          <!-- <p>Bạn đã có tài khoản? <a href="../html/login.html">Đăng nhập</a></p> -->
-          <input
-            type="text"
-            name="fullName"
-            id="fullName"
-            placeholder="Họ và tên"
-          />
-          <div class="block1-inner-email-phone">
-            <div class="inner-email">
-              <input type="email" name="email" id="email" placeholder="Email" />
-              <p class="error" id="error-email"></p>
-            </div>
-            <div class="inner-phone">
+        <div class="wrapper-content">
+          <div class="content-1">
+            <!-- Thông tin giao hàng -->
+            <div class="block1">
+              <h2>Thông tin giao hàng</h2>
+              <!-- <p>Bạn đã có tài khoản? <a href="../html/login.html">Đăng nhập</a></p> -->
               <input
                 type="text"
-                name="phoneNumber"
-                id="phoneNumber"
-                placeholder="Số điện thoại"
+                name="fullName"
+                id="fullName"
+                placeholder="Họ và tên"
               />
-              <p class="error" id="error-phone"></p>
-            </div>
-          </div>
-          <div class="delivery-box">
-            <div class="delivery-1">
-              <div class="delivery-1-title-wrapper">
-                <div class="delivery-1-title">
-                  <input type="radio" name="delivery-way" id="delivery-home" />
-                  <label for="delivery-home">Giao hàng tận nơi</label>
+              <div class="block1-inner-email-phone">
+                <div class="inner-email">
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="Email"
+                  />
+                  <p class="error" id="error-email"></p>
+                </div>
+                <div class="inner-phone">
+                  <input
+                    type="text"
+                    name="phoneNumber"
+                    id="phoneNumber"
+                    placeholder="Số điện thoại"
+                  />
+                  <p class="error" id="error-phone"></p>
                 </div>
               </div>
-              <div class="delivery-1-content">
-                <input
-                  type="text"
-                  name="address"
-                  id="address"
-                  placeholder="Địa chỉ"
-                />
-                <div class="delivery-1-content-city">
-                  <select name="city" id="city">
-                    <option value="">Tỉnh/Thành</option>
-                  </select>
-                  <select name="district" id="district">
-                    <option value="">Quận/Huyện</option>
-                  </select>
-                  <select name="ward" id="ward">
-                    <option value="">Phường/Xã</option>
-                  </select>
+              <div class="delivery-box">
+                <div class="delivery-1">
+                  <div class="delivery-1-title-wrapper">
+                    <div class="delivery-1-title">
+                      <input
+                        type="radio"
+                        name="delivery-way"
+                        id="delivery-home"
+                      />
+                      <label for="delivery-home">Giao hàng tận nơi</label>
+                    </div>
+                  </div>
+                  <div class="delivery-1-content">
+                    <input
+                      type="text"
+                      name="address"
+                      id="address"
+                      placeholder="Địa chỉ"
+                    />
+                    <div class="delivery-1-content-city">
+                      <select name="city" id="city">
+                        <option value="">Tỉnh/Thành</option>
+                      </select>
+                      <select name="district" id="district">
+                        <option value="">Quận/Huyện</option>
+                      </select>
+                      <select name="ward" id="ward">
+                        <option value="">Phường/Xã</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="delivery-2">
+                  <div class="delivery-2-title">
+                    <input
+                      type="radio"
+                      name="delivery-way"
+                      id="delivery-shop"
+                    /><label for="delivery-shop">Nhận tại cửa hàng</label>
+                  </div>
                 </div>
               </div>
             </div>
-            <div class="delivery-2">
-              <div class="delivery-2-title">
-                <input
-                  type="radio"
-                  name="delivery-way"
-                  id="delivery-shop"
-                /><label for="delivery-shop">Nhận tại cửa hàng</label>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- End thông tin giao hàng -->
+            <!-- End thông tin giao hàng -->
 
-        <!-- Phương thức vận chuyển -->
-        <div class="block2">
-          <h2>Phương thức vận chuyển</h2>
-          <div class="block2-wrapper-inner">
-            <div class="block2-inner">
-              <div class="block2-title">
-                <input
-                  type="radio"
-                  name="delivery-method"
-                  id="delivery-normal"
-                />
-                <label for="delivery-normal">Giao hàng thường (3-4 ngày)</label>
+            <!-- Phương thức vận chuyển -->
+            <div class="block2">
+              <h2>Phương thức vận chuyển</h2>
+              <div class="block2-wrapper-inner">
+                <div class="block2-inner">
+                  <div class="block2-title">
+                    <input
+                      type="radio"
+                      name="delivery-method"
+                      id="delivery-normal"
+                    />
+                    <label for="delivery-normal"
+                      >Giao hàng thường (3-4 ngày)</label
+                    >
+                  </div>
+                  <div class="block2-price">20.000đ</div>
+                </div>
+                <div class="block2-inner">
+                  <div class="block2-title">
+                    <input
+                      type="radio"
+                      name="delivery-method"
+                      id="delivery-fast"
+                    />
+                    <label for="delivery-fast"
+                      >Giao hàng nhanh (1-2 ngày)</label
+                    >
+                  </div>
+                  <div class="block2-price">31.000đ</div>
+                </div>
+                <div class="block2-inner">
+                  <div class="block2-title">
+                    <input
+                      type="radio"
+                      name="delivery-method"
+                      id="delivery-very-fast"
+                    />
+                    <label for="delivery-very-fast">Giao hoả tốc</label>
+                  </div>
+                  <div class="block2-price">40.000đ</div>
+                </div>
               </div>
-              <div class="block2-price">20.000đ</div>
             </div>
-            <div class="block2-inner">
-              <div class="block2-title">
-                <input type="radio" name="delivery-method" id="delivery-fast" />
-                <label for="delivery-fast">Giao hàng nhanh (1-2 ngày)</label>
-              </div>
-              <div class="block2-price">31.000đ</div>
-            </div>
-            <div class="block2-inner">
-              <div class="block2-title">
-                <input
-                  type="radio"
-                  name="delivery-method"
-                  id="delivery-very-fast"
-                />
-                <label for="delivery-very-fast">Giao hoả tốc</label>
-              </div>
-              <div class="block2-price">40.000đ</div>
-            </div>
-          </div>
-        </div>
-        <!-- End pt vận chuyển -->
+            <!-- End pt vận chuyển -->
 
-        <!-- Phương thức thanh toán -->
-        <div class="block3">
-          <h2>Phương thức thanh toán</h2>
-          <div class="block3-wrapper-inner">
-            <div class="block3-inner">
-              <div class="block3-title">
-                <input type="radio" name="payment-method" id="payment-cod" />
-                <label for="payment-cod">Thanh toán khi nhận hàng (COD)</label>
+            <!-- Phương thức thanh toán -->
+            <div class="block3">
+              <h2>Phương thức thanh toán</h2>
+              <div class="block3-wrapper-inner">
+                <div class="block3-inner">
+                  <div class="block3-title">
+                    <input
+                      type="radio"
+                      name="payment-method"
+                      id="payment-cod"
+                    />
+                    <label for="payment-cod"
+                      >Thanh toán khi nhận hàng (COD)</label
+                    >
+                  </div>
+                </div>
+                <div class="block3-inner">
+                  <div class="block3-title">
+                    <input
+                      type="radio"
+                      name="payment-method"
+                      id="payment-bank-transfer"
+                    />
+                    <label for="payment-bank-transfer"
+                      >Chuyển khoản ngân hàng</label
+                    >
+                  </div>
+                </div>
+                <div class="block3-inner">
+                  <div class="block3-title">
+                    <input
+                      type="radio"
+                      name="payment-method"
+                      id="payment-momo"
+                    />
+                    <label for="payment-momo">Ví momo</label>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="block3-inner">
-              <div class="block3-title">
-                <input
-                  type="radio"
-                  name="payment-method"
-                  id="payment-bank-transfer"
-                />
-                <label for="payment-bank-transfer"
-                  >Chuyển khoản ngân hàng</label
-                >
-              </div>
-            </div>
-            <div class="block3-inner">
-              <div class="block3-title">
-                <input type="radio" name="payment-method" id="payment-momo" />
-                <label for="payment-momo">Ví momo</label>
-              </div>
-            </div>
+            <!-- End phương thức thanh toán -->
           </div>
+          <div class="content-2"> 
+            <div id="cart-product-list" class="cart-product-list">
+              <!-- <div class="item">
+                <img src="../image/product-new-1.png" alt="" />
+                <div class="content">
+                  <h2 class="title">Vali vận chuyển chó mèo</h2>
+                  <p class="price">200.000đ</p>
+                  <div class="quantity-box">
+                    <p class="quantity"> SL: <span id="quantity">1</span></p>
+                    <p class="price">Giá: <span id="totalPrice">0đ</span></p>
+                  </div>
+                </div>
+              </div>
+              <hr /> -->
+            </div>
         </div>
-        <!-- End phương thức thanh toán -->
       </div>
       <!-- Section2: Xác nhận -->
       <div class="section2">

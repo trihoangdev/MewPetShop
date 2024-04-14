@@ -12,6 +12,7 @@ var deliveryWay = "delivery-way"; // Tên của nhóm radio button
 //Load DOM
 document.addEventListener("DOMContentLoaded", function () {
   preloadData();
+  loadProductInCart();
 });
 function preloadData() {
   fetch("../data/country.json")
@@ -340,4 +341,32 @@ function unformatPrice(formattedPrice) {
   // Chuyển chuỗi thành một số
   let unformattedPrice = parseFloat(priceWithoutCommas);
   return unformattedPrice;
+}
+
+//Phương trình load các sản phẩm trong giỏ hàng lên
+function loadProductInCart() {
+  //Lấy dữ liệu từ LocalStorage
+  let productInCart = JSON.parse(localStorage.getItem("productInCart"));
+
+  var html = "";
+  for (var i = 0; i < productInCart.length; i++) {
+    html += `<div class="item">
+    <img src="../${productInCart[i].src}" alt="" />
+    <div class="content">
+      <h2 class="title">${productInCart[i].title}</h2>
+      <p class="price">Giá: ${formatPrice(productInCart[i].price)}</p>
+      <div class="quantity-box">
+        <p class="quantity"> SL: <span id="quantity">${
+          productInCart[i].quantity
+        }</span></p>
+        <p class="price">Thành tiền: <span id="totalPrice">${formatPrice(
+          productInCart[i].price * productInCart[i].quantity
+        )}</span></p>
+      </div>
+    </div>
+  </div>
+  <hr />`;
+  }
+  //Hiển thị thông tin
+  document.getElementById("cart-product-list").innerHTML = html;
 }
