@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
+    <h1>Web demo: https://mew-pet-shop.vercel.app/</h1>
     <h1>Hướng dẫn cài đặt</h1>
     <p><b>Bước 1:</b> Tải file từ github</p>
     <img style="width: 1000px" src="./image/guide/1.png" alt="" />
